@@ -3,11 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Investment Thesis — Babar Khalid Khan</title>
+<title>Perspective · Babar Khan, PhD</title>
+<meta name="description" content="Where Babar Khan focuses at the intersection of deep tech and applied AI: biotech, AI infrastructure, the track record behind it, and how he works with founders and co-investors.">
+<link rel="canonical" href="https://babarkkhan.com/thesis.html">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://babarkkhan.com/thesis.html">
+<meta property="og:title" content="Perspective · Babar Khan, PhD">
+<meta property="og:description" content="Deep Tech × Applied AI. Where Babar Khan focuses, the track record behind it, and how he works with founders and co-investors.">
+<meta property="og:image" content="https://babarkkhan.com/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@babarkkhan">
+<meta name="twitter:title" content="Perspective · Babar Khan, PhD">
+<meta name="twitter:description" content="Deep Tech × Applied AI. Where Babar Khan focuses, the track record behind it, and how he works with founders and co-investors.">
+<meta name="twitter:image" content="https://babarkkhan.com/og-image.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>html { visibility: hidden; }</style>
 <script>(function(){var t=localStorage.getItem('bkk-theme');if(t==='dark')document.documentElement.setAttribute('data-theme','dark');document.documentElement.style.visibility='visible';})();</script>
+<noscript><style>
+  html { visibility: visible !important; }
+  .reveal { opacity: 1 !important; transform: none !important; }
+  .thesis-eyebrow, .thesis-h1, .thesis-subtitle { opacity: 1 !important; animation: none !important; }
+</style></noscript>
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   :root {
@@ -24,6 +45,7 @@
   }
   html { scroll-behavior: smooth; }
   body { background: var(--bg); color: var(--navy); font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; transition: background 0.4s ease, color 0.4s ease; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; border-radius: 4px; }
 
   /* NAV */
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 16px 56px; background: var(--nav-bg); backdrop-filter: blur(12px); box-shadow: 0 1px 0 var(--line); transition: background 0.4s ease, box-shadow 0.4s ease; }
@@ -76,14 +98,7 @@
   .track-footnote { font-size: 14px; color: var(--ink-soft); font-weight: 300; line-height: 1.7; padding: 20px 24px; background: var(--bg-alt); border: 1px solid var(--line); border-radius: 6px; }
   .track-footnote strong { color: var(--navy-mid); font-weight: 500; }
 
-  /* ── SECTION 3: DIFFERENTIATED LENS ── */
-  .lens-list { display: flex; flex-direction: column; }
-  .lens-item { display: grid; grid-template-columns: 200px 1fr; gap: 40px; align-items: start; padding: 32px 0; border-bottom: 1px solid var(--line); }
-  .lens-item:last-child { border-bottom: none; }
-  .lens-label { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--navy); line-height: 1.2; padding-top: 3px; }
-  .lens-body { font-size: 16px; color: var(--navy-mid); line-height: 1.85; font-weight: 300; }
-
-  /* ── SECTION 4: VALUE-ADD ── */
+  /* ── SECTION 3: HOW I WORK ── */
   .value-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .value-card { background: var(--bg-alt); border: 1px solid var(--line); border-radius: 8px; padding: 32px 32px; transition: box-shadow 0.25s; }
   .value-card:hover { box-shadow: 0 4px 20px rgba(11,29,58,0.07); }
@@ -131,11 +146,17 @@
   [data-theme="dark"] footer { background: #0D1117; border-top: 1px solid var(--line); color: var(--ink-soft); }
 
   /* Smooth transitions */
-  .invest-card, .invest-card-header, .invest-item, .track-card, .value-card, .lens-item, .thesis-cta-section, footer, nav { transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.3s ease; }
+  .invest-card, .invest-card-header, .invest-item, .track-card, .value-card, .thesis-cta-section, footer, nav { transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.3s ease; }
 
   @keyframes up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
   .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .reveal.on { opacity: 1; transform: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .thesis-eyebrow, .thesis-h1, .thesis-subtitle { animation: none; opacity: 1; }
+    .reveal { transition: none; opacity: 1; transform: none; }
+  }
 
   @media (max-width: 900px) {
     nav { padding: 14px 20px; }
@@ -143,7 +164,6 @@
     .thesis-hero { padding-top: 110px; padding-bottom: 56px; }
     .invest-grid, .value-grid { grid-template-columns: 1fr; }
     .track-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-    .lens-item { grid-template-columns: 1fr; gap: 8px; }
     .thesis-cta-inner { padding: 56px 24px; }
     footer { padding: 20px 24px; flex-direction: column; gap: 8px; text-align: center; }
   }
@@ -155,13 +175,13 @@
 <body>
 
 <nav>
-  <a class="nav-logo" href="index.html">Babar Khalid Khan</a>
+  <a class="nav-logo" href="index.html">Babar Khan</a>
   <div class="nav-right">
     <a class="nav-back" href="index.html">← Home</a>
-    <a class="nav-icon" href="https://linkedin.com/in/babark" target="_blank" title="LinkedIn">
+    <a class="nav-icon" href="https://linkedin.com/in/babark" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn">
       <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
     </a>
-    <a class="nav-icon" href="https://x.com/babarkkhan" target="_blank" title="X">
+    <a class="nav-icon" href="https://x.com/babarkkhan" target="_blank" rel="noopener" title="X" aria-label="X">
       <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
     </a>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle dark mode">
@@ -173,9 +193,9 @@
 
 <!-- HERO -->
 <div class="thesis-hero">
-  <p class="thesis-eyebrow">Investment Thesis</p>
+  <p class="thesis-eyebrow">Perspective</p>
   <h1 class="thesis-h1">Deep Tech × <em>Applied AI</em></h1>
-  <p class="thesis-subtitle">The most consequential companies of the next decade will be built at the intersection of deep technology and applied AI seeking real-world outcomes. I invest where these forces meet — backing founders who translate hard science into scalable platforms.</p>
+  <p class="thesis-subtitle">The most consequential companies of the next decade will be built at the intersection of deep technology and applied AI seeking real-world outcomes. I invest where these forces meet, backing founders who translate hard science into scalable platforms.</p>
 </div>
 
 <div class="thesis-content">
@@ -194,11 +214,11 @@
         </div>
         <div class="invest-card-body">
           <div class="invest-item">
-            <div class="invest-item-title">Healthcare & AI-enabled tools</div>
-            <p class="invest-item-body">Platforms that bring computation into clinical workflows — digital biomarkers enabling decentralized trials, brain-computer interfaces moving from research to therapeutic devices, agentic AI automating healthcare operations. Technology that compresses the distance between data and clinical decision-making.</p>
+            <div class="invest-item-title">Healthcare &amp; AI-enabled tools</div>
+            <p class="invest-item-body">Platforms that bring computation into clinical workflows: digital biomarkers enabling decentralized trials, brain-computer interfaces moving from research to therapeutic devices, agentic AI automating healthcare operations. Technology that compresses the distance between data and clinical decision-making.</p>
           </div>
           <div class="invest-item">
-            <div class="invest-item-title">Biomanufacturing & industrial biology</div>
+            <div class="invest-item-title">Biomanufacturing &amp; industrial biology</div>
             <p class="invest-item-body">Cell-cultured proteins, precision fermentation, bio-based materials. The GCC is investing billions to build food and pharma sovereignty; I structure JVs to bring these technologies in-country. Companies that can license or localize production for Middle East and APAC markets have a second growth vector most US VCs overlook.</p>
           </div>
           <div class="invest-item">
@@ -240,7 +260,7 @@
     <div class="track-grid">
 
       <div class="track-card">
-        <img class="track-logo" src="https://logo.clearbit.com/sondehealth.com" alt="Sonde Health"
+        <img class="track-logo" src="logos/sondehealth.com.png" alt="Sonde Health"
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="track-logo-fallback" style="display:none">S</div>
         <div>
@@ -251,7 +271,7 @@
       </div>
 
       <div class="track-card">
-        <img class="track-logo" src="https://logo.clearbit.com/bluenalu.com" alt="BlueNalu"
+        <img class="track-logo" src="logos/bluenalu.com.png" alt="BlueNalu"
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="track-logo-fallback" style="display:none">B</div>
         <div>
@@ -262,7 +282,7 @@
       </div>
 
       <div class="track-card">
-        <img class="track-logo" src="https://logo.clearbit.com/liberationbioindustries.com" alt="Liberation Bioindustries"
+        <img class="track-logo" src="logos/liberationbioindustries.com.png" alt="Liberation Bioindustries"
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="track-logo-fallback" style="display:none">L</div>
         <div>
@@ -273,7 +293,7 @@
       </div>
 
       <div class="track-card">
-        <img class="track-logo" src="https://logo.clearbit.com/paradromics.com" alt="Paradromics"
+        <img class="track-logo" src="logos/paradromics.com.png" alt="Paradromics"
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="track-logo-fallback" style="display:none">P</div>
         <div>
@@ -284,7 +304,7 @@
       </div>
 
       <div class="track-card">
-        <img class="track-logo" src="https://logo.clearbit.com/animocabrands.com" alt="Animoca Brands"
+        <img class="track-logo" src="logos/animocabrands.com.png" alt="Animoca Brands"
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="track-logo-fallback" style="display:none">A</div>
         <div>
@@ -298,44 +318,17 @@
     <p class="track-footnote"><strong>Earlier:</strong> Led preclinical therapeutic pipeline at ContraFect Corp (antimicrobial biotech), contributing to $20M financing round and eventual IPO.</p>
   </div>
 
-  <!-- SECTION 3: THE DIFFERENTIATED LENS -->
+  <!-- SECTION 3: HOW I WORK -->
   <div class="thesis-section reveal">
-    <p class="ts-label">The Differentiated Lens</p>
-    <div class="lens-list">
-      <div class="lens-item">
-        <div class="lens-label">Technologist</div>
-        <p class="lens-body">Built my first computer in '95 (a 286, 1MB RAM) at age 9. Spent a decade as a technician in our family's IT business. Competed in esports (Counter-Strike, 2008) before it was a career. I've always been at the frontier of whatever technology is reshaping how people live and work.</p>
-      </div>
-      <div class="lens-item">
-        <div class="lens-label">Scientist</div>
-        <p class="lens-body">PhD in Bioscience (KAUST), MS in Microbiology (Rutgers) earned while working full-time at Genzyme Genetics. 3 US patents. Hands-on drug development from target discovery through Phase I clinical trial design. I evaluate the science directly — I don't outsource that judgment.</p>
-      </div>
-      <div class="lens-item">
-        <div class="lens-label">Operator</div>
-        <p class="lens-body">Founded AI Astrolabe to deliver high-quality multimodal data for frontier AI. I run all business operations using an actual AI-first approach — legal, finance, contracting, fundraising. I know what it takes to build from zero.</p>
-      </div>
-      <div class="lens-item">
-        <div class="lens-label">Capital Deployer</div>
-        <p class="lens-body">Led the life science portfolio at NEOM Investment Fund and structured joint ventures to build "Industries of the Future" in Saudi Arabia. Presented to an Investment Committee chaired by the Governor of PIF (Saudi Arabia's sovereign wealth fund). I've moved capital through complex institutional frameworks.</p>
-      </div>
-      <div class="lens-item">
-        <div class="lens-label">Connector</div>
-        <p class="lens-body">American citizen, Saudi Premium Resident, UAE Golden Visa holder. 35+ countries. Networks spanning US venture, GCC sovereign wealth, and global policy circles (WEF, Milken). I can unlock markets for portfolio companies.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- SECTION 4: VALUE-ADD BEYOND CAPITAL -->
-  <div class="thesis-section reveal">
-    <p class="ts-label">Value-Add Beyond Capital</p>
+    <p class="ts-label">How I Work</p>
     <div class="value-grid">
       <div class="value-card">
         <div class="value-title">GCC market access</div>
-        <p class="value-body">12+ years building relationships with ministries, PIF portfolio companies, and KAUST. For portfolio companies exploring Middle East expansion, licensing, or sovereign co-investment, I'm a direct bridge.</p>
+        <p class="value-body">12+ years building relationships with ministries, PIF portfolio companies, and KAUST. For companies exploring Middle East expansion, licensing, or sovereign co-investment, I'm a direct bridge.</p>
       </div>
       <div class="value-card">
-        <div class="value-title">Regulatory & scientific diligence</div>
-        <p class="value-body">I do my own technical diligence. For co-investors, this is a differentiator — I can underwrite tech risk, not just market-size slides.</p>
+        <div class="value-title">Regulatory &amp; scientific diligence</div>
+        <p class="value-body">I do my own technical diligence. For co-investors, this is a differentiator: I can underwrite tech risk, not just market-size slides.</p>
       </div>
       <div class="value-card">
         <div class="value-title">Board governance</div>
@@ -354,15 +347,15 @@
 <div class="thesis-cta-section">
   <div class="thesis-cta-inner reveal">
     <h2 class="thesis-cta-hed">Let's connect on something <em>meaningful.</em></h2>
-    <p class="thesis-cta-sub">I'm always open to meeting founders building at the frontier of technology — especially those who want an investor who can evaluate the science, structure the deal, and open the door to the fastest-growing capital markets in the world.</p>
+    <p class="thesis-cta-sub">I'm always open to meeting founders building at the frontier of technology, especially those who want a partner who can evaluate the science, structure the deal, and open the door to the fastest-growing capital markets in the world.</p>
     <div class="thesis-cta-icons">
-      <a class="thesis-cta-link" href="https://linkedin.com/in/babark" target="_blank" title="LinkedIn">
+      <a class="thesis-cta-link" href="https://linkedin.com/in/babark" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
       </a>
-      <a class="thesis-cta-link" href="https://x.com/babarkkhan" target="_blank" title="X">
+      <a class="thesis-cta-link" href="https://x.com/babarkkhan" target="_blank" rel="noopener" title="X" aria-label="X">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
       </a>
-      <a class="thesis-cta-link" href="https://app.reclaim.ai/m/bkhan" target="_blank" title="Sync">
+      <a class="thesis-cta-link" href="https://cal.com/bkhan" target="_blank" rel="noopener" title="Book time" aria-label="Book time">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20a2 2 0 002 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11zm0-13H5V6h14v1zM7 11h5v5H7z"/></svg>
       </a>
     </div>
@@ -370,7 +363,7 @@
 </div>
 
 <footer>
-  <span>© 2026 Babar Khalid Khan · babarkkhan.com</span>
+  <span>© 2026 Babar Khan · babarkkhan.com</span>
   <span class="footer-r">Riyadh · New York · Global</span>
 </footer>
 
