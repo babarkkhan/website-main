@@ -5,169 +5,251 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pricing Sensitivity Calculator</title>
   <style>
+    :root {
+      --bg: #f5f7fb;
+      --surface: #ffffff;
+      --text: #16181d;
+      --text-soft: #5b6472;
+      --text-faint: #98a1b0;
+      --border: #e3e7ee;
+      --accent: #4f46e5;
+      --accent-soft: #eef2ff;
+      --green: #059669;
+      --red: #dc2626;
+      --shadow: 0 1px 3px rgba(16,24,40,.06), 0 4px 16px rgba(16,24,40,.06);
+      --radius: 14px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #101318;
+        --surface: #1a1f27;
+        --text: #eef1f6;
+        --text-soft: #a7b0bf;
+        --text-faint: #6b7484;
+        --border: #2a313c;
+        --accent: #818cf8;
+        --accent-soft: #23263a;
+        --green: #34d399;
+        --red: #f87171;
+        --shadow: 0 1px 3px rgba(0,0,0,.4), 0 4px 16px rgba(0,0,0,.3);
+      }
+    }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: #f4f6f9;
-      color: #1a1d23;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      background: var(--bg);
+      color: var(--text);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 40px 20px 80px;
+      padding: clamp(20px, 4vw, 48px) 16px 80px;
+      -webkit-font-smoothing: antialiased;
     }
 
-    h1 { font-size: 1.75rem; font-weight: 700; margin-bottom: 6px; }
-    .subtitle { color: #6b7280; margin-bottom: 32px; font-size: 0.95rem; }
+    .wrap { width: 100%; max-width: 920px; }
 
-    .section-label {
-      width: 100%;
-      max-width: 900px;
-      font-size: 0.7rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #9ca3af;
-      margin-bottom: 10px;
-      margin-top: 8px;
-    }
+    header { margin-bottom: 28px; }
+    h1 { font-size: clamp(1.4rem, 3vw, 1.8rem); font-weight: 750; letter-spacing: -0.02em; }
+    .subtitle { color: var(--text-soft); margin-top: 6px; font-size: 0.95rem; line-height: 1.5; }
 
     .card {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-      padding: 28px 32px;
-      width: 100%;
-      max-width: 900px;
-      margin-bottom: 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px 24px;
+      margin-bottom: 18px;
     }
 
     .card-title {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--text-faint);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    /* ── Inputs ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 14px;
+    }
+
+    .field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+    .field label { font-weight: 600; font-size: 0.82rem; color: var(--text-soft); }
+
+    .control {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 0 12px;
+      transition: border-color .15s, box-shadow .15s;
+    }
+    .control:focus-within {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent);
+    }
+    .control .affix { font-size: 0.92rem; font-weight: 600; color: var(--text-faint); flex-shrink: 0; }
+    .control input {
+      flex: 1;
+      min-width: 0;
+      border: none;
+      outline: none;
+      background: transparent;
+      color: var(--text);
+      font: inherit;
+      font-size: 1rem;
+      font-weight: 550;
+      padding: 10px 0;
+    }
+    /* hide number spinners for cleaner look */
+    .control input::-webkit-outer-spin-button,
+    .control input::-webkit-inner-spin-button { -webkit-appearance: none; }
+    .control input[type=number] { -moz-appearance: textfield; appearance: textfield; }
+
+    .hint { font-size: 0.76rem; color: var(--text-faint); }
+    .error { font-size: 0.8rem; color: var(--red); margin-top: 10px; min-height: 1em; }
+
+    /* ── Buttons ── */
+    .btn {
+      font: inherit;
+      font-size: 0.82rem;
+      font-weight: 600;
+      border-radius: 9px;
+      padding: 8px 14px;
+      cursor: pointer;
+      border: 1.5px solid var(--border);
+      background: var(--surface);
+      color: var(--text-soft);
+      transition: all .15s;
+      white-space: nowrap;
+    }
+    .btn:hover { border-color: var(--accent); color: var(--accent); }
+    .btn-primary {
+      background: var(--accent-soft);
+      color: var(--accent);
+      border: 1.5px dashed color-mix(in srgb, var(--accent) 45%, transparent);
+    }
+    .btn-primary:hover { background: color-mix(in srgb, var(--accent) 14%, var(--surface)); }
+    .btn-danger { color: var(--red); }
+    .btn-danger:hover { border-color: var(--red); background: color-mix(in srgb, var(--red) 7%, var(--surface)); }
+    .btn-ghost { border-color: transparent; padding: 6px 10px; font-size: 0.78rem; }
+    .btn-ghost:hover { background: var(--accent-soft); }
+
+    /* ── Tables ── */
+    .table-scroll { overflow-x: auto; margin: 0 -24px; padding: 0 24px; }
+
+    table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+
+    thead th {
+      text-align: left;
+      font-size: 0.72rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.06em;
-      color: #9ca3af;
-      margin-bottom: 16px;
-    }
-
-    .fields {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 16px;
-    }
-    .fields.single { grid-template-columns: 1fr; }
-
-    .input-group { display: flex; flex-direction: column; gap: 6px; }
-    label { font-weight: 600; font-size: 0.85rem; color: #374151; }
-    .input-row { display: flex; gap: 8px; align-items: center; }
-    .prefix, .suffix { font-size: 1rem; font-weight: 600; color: #6b7280; }
-
-    input[type="number"] {
-      flex: 1;
-      padding: 9px 12px;
-      border: 1.5px solid #d1d5db;
-      border-radius: 8px;
-      font-size: 1rem;
-      transition: border-color 0.2s;
-      outline: none;
-      min-width: 0;
-    }
-    input[type="number"]:focus { border-color: #4f46e5; }
-
-    .error { font-size: 0.75rem; color: #dc2626; min-height: 1rem; }
-    .hint  { font-size: 0.78rem; color: #9ca3af; }
-
-    /* ── Section 1 table ── */
-    .table-wrapper { width: 100%; max-width: 900px; overflow-x: auto; margin-bottom: 20px; }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      background: #fff;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-    }
-    thead tr { background: #4f46e5; color: #fff; }
-    thead th {
-      padding: 14px 20px;
-      text-align: left;
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
+      color: var(--text-faint);
+      padding: 10px 14px;
+      border-bottom: 1.5px solid var(--border);
       white-space: nowrap;
+      position: sticky;
+      top: 0;
+      background: var(--surface);
     }
-    tbody tr { border-bottom: 1px solid #f0f1f3; transition: background 0.15s; }
-    tbody tr:last-child { border-bottom: none; }
-    tbody tr:hover { background: #f5f3ff; }
-    tbody td { padding: 13px 20px; font-size: 0.95rem; vertical-align: top; }
+    thead th:first-child, tbody td:first-child { padding-left: 4px; }
+    thead th:last-child,  tbody td:last-child  { padding-right: 4px; }
 
-    .margin-col { font-weight: 700; color: #4f46e5; white-space: nowrap; }
-    .price-col  { font-weight: 600; white-space: nowrap; }
-    .profit-col { color: #059669; font-weight: 500; white-space: nowrap; }
+    tbody tr { border-bottom: 1px solid var(--border); transition: background .12s; }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: var(--accent-soft); }
+
+    tbody td { padding: 12px 14px; font-size: 0.94rem; vertical-align: top; white-space: nowrap; }
+
+    .c-margin { font-weight: 700; color: var(--accent); }
+    .c-price  { font-weight: 650; font-size: 1rem; }
+    .c-profit { color: var(--green); font-weight: 550; }
+    .c-markup { color: var(--text-soft); }
 
     .badge {
       display: inline-block;
-      padding: 2px 8px;
+      padding: 2.5px 9px;
       border-radius: 999px;
-      font-size: 0.75rem;
-      font-weight: 600;
+      font-size: 0.72rem;
+      font-weight: 650;
+      letter-spacing: 0.01em;
     }
-    .badge-low  { background: #fef9c3; color: #92400e; }
+    .badge-low  { background: #fef3c7; color: #92400e; }
     .badge-mid  { background: #dbeafe; color: #1e40af; }
     .badge-high { background: #d1fae5; color: #065f46; }
-
-    .empty-state {
-      text-align: center;
-      padding: 40px 20px;
-      color: #9ca3af;
-      font-size: 0.95rem;
+    @media (prefers-color-scheme: dark) {
+      .badge-low  { background: #43340c; color: #fcd34d; }
+      .badge-mid  { background: #1c2f57; color: #93c5fd; }
+      .badge-high { background: #0c3a2b; color: #6ee7b7; }
     }
 
-    /* ── Section 2: Volume toggle ── */
-    .section2-toggle {
-      width: 100%;
-      max-width: 900px;
+    .empty {
+      text-align: center;
+      padding: 44px 20px;
+      color: var(--text-faint);
+      font-size: 0.92rem;
+    }
+    .empty .big { font-size: 1.6rem; display: block; margin-bottom: 8px; }
+
+    /* ── Toggle row ── */
+    .toggle-row {
       display: flex;
       align-items: center;
-      gap: 12px;
-      margin-bottom: 20px;
+      gap: 14px;
+      padding: 18px 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
       cursor: pointer;
       user-select: none;
     }
+    .toggle-row:hover { border-color: var(--accent); }
 
-    .toggle-track {
-      width: 44px;
-      height: 24px;
+    .switch {
+      width: 42px; height: 24px;
       border-radius: 999px;
-      background: #d1d5db;
+      background: var(--border);
       position: relative;
-      transition: background 0.2s;
+      transition: background .2s;
       flex-shrink: 0;
     }
-    .toggle-track.on { background: #4f46e5; }
-    .toggle-thumb {
-      width: 18px;
-      height: 18px;
+    .switch.on { background: var(--accent); }
+    .switch::after {
+      content: "";
+      width: 18px; height: 18px;
       border-radius: 50%;
       background: #fff;
-      position: absolute;
-      top: 3px;
-      left: 3px;
-      transition: left 0.2s;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+      position: absolute; top: 3px; left: 3px;
+      transition: left .2s;
+      box-shadow: 0 1px 3px rgba(0,0,0,.25);
     }
-    .toggle-track.on .toggle-thumb { left: 23px; }
+    .switch.on::after { left: 21px; }
 
-    .toggle-label { font-weight: 600; font-size: 0.95rem; color: #374151; }
-    .toggle-hint  { font-size: 0.8rem; color: #9ca3af; }
+    .toggle-text b { font-size: 0.95rem; font-weight: 650; display: block; }
+    .toggle-text span { font-size: 0.8rem; color: var(--text-faint); }
 
-    /* ── Volume tier rows ── */
+    /* ── Volume section ── */
     #volumeSection { display: none; }
-    #volumeSection.visible { display: block; }
+    #volumeSection.visible { display: block; animation: slideIn .25s ease; }
+    @keyframes slideIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
 
     .tier-row {
       display: grid;
@@ -176,341 +258,353 @@
       align-items: end;
       margin-bottom: 12px;
     }
-
-    .btn-remove {
-      padding: 9px 14px;
-      border: 1.5px solid #fca5a5;
-      background: #fff;
-      color: #dc2626;
-      border-radius: 8px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.15s;
-      white-space: nowrap;
+    @media (max-width: 560px) {
+      .tier-row { grid-template-columns: 1fr 1fr; }
+      .tier-row .btn-danger { grid-column: span 2; }
     }
-    .btn-remove:hover { background: #fef2f2; }
 
-    .btn-add {
-      padding: 9px 18px;
-      border: 1.5px dashed #a5b4fc;
-      background: #f5f3ff;
-      color: #4f46e5;
-      border-radius: 8px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.15s;
-      margin-top: 4px;
-    }
-    .btn-add:hover { background: #ede9fe; }
+    .vol-cell { min-width: 150px; }
+    .vol-price  { font-weight: 700; font-size: 0.98rem; }
+    .vol-line   { font-size: 0.78rem; color: var(--text-soft); margin-top: 3px; display: flex; gap: 6px; }
+    .vol-line .k { color: var(--text-faint); min-width: 52px; }
+    .vol-line .green { color: var(--green); font-weight: 600; }
+    .vol-line .accent { color: var(--accent); font-weight: 600; }
 
-    /* ── Volume cross-table ── */
-    .vol-cell { min-width: 130px; }
-    .vol-unit-price { font-weight: 700; font-size: 0.95rem; white-space: nowrap; }
-    .vol-revenue    { font-size: 0.78rem; color: #6b7280; margin-top: 3px; white-space: nowrap; }
-    .vol-profit     { font-size: 0.82rem; color: #059669; font-weight: 600; margin-top: 2px; white-space: nowrap; }
-    .vol-eff-margin { font-size: 0.75rem; color: #4f46e5; margin-top: 2px; white-space: nowrap; }
-    .discount-pill {
+    .pill {
       display: inline-block;
-      background: #fef3c7;
-      color: #92400e;
-      font-size: 0.7rem;
-      font-weight: 700;
-      padding: 1px 6px;
-      border-radius: 999px;
-      margin-left: 4px;
-      vertical-align: middle;
+      background: #fef3c7; color: #92400e;
+      font-size: 0.68rem; font-weight: 700;
+      padding: 1px 7px; border-radius: 999px;
+      margin-left: 6px; vertical-align: 1px;
+    }
+    @media (prefers-color-scheme: dark) { .pill { background: #43340c; color: #fcd34d; } }
+
+    footer {
+      margin-top: 24px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--text-faint);
     }
   </style>
 </head>
 <body>
-  <h1>Pricing Sensitivity Calculator</h1>
-  <p class="subtitle">Per-unit pricing sensitivity with optional volume analysis for sales conversations.</p>
+  <div class="wrap">
+    <header>
+      <h1>Pricing Sensitivity Calculator</h1>
+      <p class="subtitle">Enter your unit cost, choose a margin range, and see prices instantly. Flip on Volume Analysis to model deal sizes and discounts live with a client.</p>
+    </header>
 
-  <!-- ══ SECTION 1 ══ -->
-  <div class="section-label">Section 1 — Per Unit</div>
-
-  <div class="card">
-    <div class="card-title">Cost</div>
-    <div class="fields single">
-      <div class="input-group">
-        <label for="costInput">Product / Service Cost (per unit)</label>
-        <div class="input-row">
-          <span class="prefix">$</span>
-          <input id="costInput" type="number" min="0" step="0.01"
-            placeholder="e.g. 100.00" oninput="buildAll()" />
-        </div>
-        <span class="hint">Profit margin = (Price − Cost) / Price × 100</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-title">Margin Range</div>
-    <div class="fields">
-      <div class="input-group">
-        <label for="minMargin">Min Margin</label>
-        <div class="input-row">
-          <input id="minMargin" type="number" min="1" max="99" step="1" value="50" oninput="buildAll()" />
-          <span class="suffix">%</span>
-        </div>
-      </div>
-      <div class="input-group">
-        <label for="maxMargin">Max Margin</label>
-        <div class="input-row">
-          <input id="maxMargin" type="number" min="1" max="99" step="1" value="80" oninput="buildAll()" />
-          <span class="suffix">%</span>
-        </div>
-      </div>
-      <div class="input-group">
-        <label for="increment">Increment</label>
-        <div class="input-row">
-          <input id="increment" type="number" min="1" max="50" step="1" value="5" oninput="buildAll()" />
-          <span class="suffix">%</span>
-        </div>
-      </div>
-    </div>
-    <div id="rangeError" class="error" style="margin-top:10px;"></div>
-  </div>
-
-  <div class="table-wrapper">
-    <table>
-      <thead>
-        <tr>
-          <th>Margin %</th>
-          <th>Selling Price</th>
-          <th>Gross Profit $</th>
-          <th>Tier</th>
-        </tr>
-      </thead>
-      <tbody id="tableBody">
-        <tr><td colspan="4" class="empty-state">Fill in the fields above to generate the table.</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- ══ SECTION 2 TOGGLE ══ -->
-  <div class="section2-toggle" onclick="toggleSection2()">
-    <div class="toggle-track" id="toggleTrack"><div class="toggle-thumb"></div></div>
-    <div>
-      <div class="toggle-label">Volume Analysis</div>
-      <div class="toggle-hint">Multiply by deal size and apply volume discounts — useful for live client conversations</div>
-    </div>
-  </div>
-
-  <!-- ══ SECTION 2 ══ -->
-  <div id="volumeSection">
-    <div class="section-label">Section 2 — Volume</div>
-
+    <!-- Inputs -->
     <div class="card">
-      <div class="card-title">Volume Tiers</div>
-      <div id="tierRows"></div>
-      <button class="btn-add" onclick="addTier()">+ Add Volume Tier</button>
-      <div id="volError" class="error" style="margin-top:10px;"></div>
+      <div class="card-title">Inputs</div>
+      <div class="grid">
+        <div class="field" style="grid-column: 1 / -1;">
+          <label for="costInput">Cost per unit</label>
+          <div class="control">
+            <span class="affix">$</span>
+            <input id="costInput" type="number" min="0" step="0.01" inputmode="decimal"
+              placeholder="100.00" oninput="onInput()" autofocus />
+          </div>
+          <span class="hint">Margin = (Price − Cost) ÷ Price. Price = Cost ÷ (1 − Margin).</span>
+        </div>
+        <div class="field">
+          <label for="minMargin">Min margin</label>
+          <div class="control">
+            <input id="minMargin" type="number" min="1" max="99" step="1" value="50" inputmode="numeric" oninput="onInput()" />
+            <span class="affix">%</span>
+          </div>
+        </div>
+        <div class="field">
+          <label for="maxMargin">Max margin</label>
+          <div class="control">
+            <input id="maxMargin" type="number" min="1" max="99" step="1" value="80" inputmode="numeric" oninput="onInput()" />
+            <span class="affix">%</span>
+          </div>
+        </div>
+        <div class="field">
+          <label for="increment">Step</label>
+          <div class="control">
+            <input id="increment" type="number" min="0.5" max="50" step="0.5" value="5" inputmode="decimal" oninput="onInput()" />
+            <span class="affix">%</span>
+          </div>
+        </div>
+      </div>
+      <div id="rangeError" class="error"></div>
     </div>
 
-    <div class="table-wrapper" id="volTableWrapper" style="display:none;">
-      <table id="volTable">
-        <thead><tr id="volHead"></tr></thead>
-        <tbody id="volBody"></tbody>
-      </table>
+    <!-- Per-unit table -->
+    <div class="card">
+      <div class="card-title">
+        Per-unit pricing
+        <button class="btn btn-ghost" onclick="exportCSV()" id="csvBtn" style="display:none;">⬇ Export CSV</button>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Margin</th>
+              <th>Price</th>
+              <th>Profit / unit</th>
+              <th>Markup</th>
+              <th>Tier</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+            <tr><td colspan="5" class="empty"><span class="big">💰</span>Enter a cost above to see your pricing table.</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
+
+    <!-- Volume toggle -->
+    <div class="toggle-row" onclick="toggleVolume()" role="switch" aria-checked="false" id="volToggleRow" tabindex="0"
+         onkeydown="if(event.key===' '||event.key==='Enter'){event.preventDefault();toggleVolume();}">
+      <div class="switch" id="volSwitch"></div>
+      <div class="toggle-text">
+        <b>Volume Analysis</b>
+        <span>Model deal sizes and volume discounts — revenue and total profit per tier</span>
+      </div>
+    </div>
+
+    <!-- Volume section -->
+    <div id="volumeSection">
+      <div class="card">
+        <div class="card-title">Volume tiers</div>
+        <div id="tierRows"></div>
+        <button class="btn btn-primary" onclick="addTier()">＋ Add tier</button>
+      </div>
+
+      <div class="card" id="volTableCard" style="display:none;">
+        <div class="card-title">Deal comparison <span class="hint" style="text-transform:none;letter-spacing:0;">rows = margin · columns = deal size</span></div>
+        <div class="table-scroll">
+          <table>
+            <thead><tr id="volHead"></tr></thead>
+            <tbody id="volBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <footer>Everything runs in your browser — nothing is uploaded. Inputs are saved locally on this device.</footer>
   </div>
 
   <script>
-    // ── State ──────────────────────────────────────────────
-    let tiers = [
-      { qty: 10,  discount: 0  },
-      { qty: 50,  discount: 5  },
-      { qty: 100, discount: 10 },
-    ];
-    let section2Open = false;
+    'use strict';
 
-    // ── Toggle ─────────────────────────────────────────────
-    function toggleSection2() {
-      section2Open = !section2Open;
-      document.getElementById('toggleTrack').classList.toggle('on', section2Open);
-      document.getElementById('volumeSection').classList.toggle('visible', section2Open);
-      if (section2Open) { renderTierRows(); buildAll(); }
+    // ── State ─────────────────────────────────────────────
+    const DEFAULTS = { cost: '', min: 50, max: 80, step: 5, volOpen: false,
+      tiers: [ { qty: 10, discount: 0 }, { qty: 50, discount: 5 }, { qty: 100, discount: 10 } ] };
+    let state = loadState();
+
+    const $ = id => document.getElementById(id);
+    const money = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
+    const num   = new Intl.NumberFormat('en-US');
+
+    function loadState() {
+      try {
+        const saved = JSON.parse(localStorage.getItem('pricing-calc') || 'null');
+        if (saved && Array.isArray(saved.tiers)) return { ...DEFAULTS, ...saved };
+      } catch (e) { /* corrupted storage — fall back to defaults */ }
+      return JSON.parse(JSON.stringify(DEFAULTS));
+    }
+    function saveState() {
+      try { localStorage.setItem('pricing-calc', JSON.stringify(state)); } catch (e) {}
     }
 
-    // ── Tier management ────────────────────────────────────
+    // ── Input handling ────────────────────────────────────
+    function onInput() {
+      state.cost = $('costInput').value;
+      state.min  = $('minMargin').value;
+      state.max  = $('maxMargin').value;
+      state.step = $('increment').value;
+      saveState();
+      render();
+    }
+
+    function readInputs() {
+      return {
+        cost: parseFloat(state.cost),
+        min:  parseFloat(state.min),
+        max:  parseFloat(state.max),
+        step: parseFloat(state.step),
+      };
+    }
+
+    function validate({ cost, min, max, step }) {
+      if (state.cost === '' || isNaN(cost) || cost <= 0) return { empty: true };
+      if ([min, max, step].some(isNaN))                  return { empty: true };
+      if (min <= 0 || max <= 0 || step <= 0) return { error: 'Margins and step must be greater than 0.' };
+      if (min >= 100 || max >= 100)          return { error: 'Margins must be below 100%.' };
+      if (min >= max)                        return { error: 'Min margin must be below max margin.' };
+      if (step > max - min)                  return { error: 'Step is larger than the margin range.' };
+      if ((max - min) / step > 60)           return { error: 'That step creates too many rows — use a bigger step.' };
+      return { ok: true };
+    }
+
+    function marginSteps(min, max, step) {
+      const out = [];
+      for (let m = min; m <= max + 1e-9; m += step) out.push(Math.round(m * 100) / 100);
+      return out;
+    }
+
+    // ── Per-unit table ────────────────────────────────────
+    function renderUnitTable() {
+      const tbody = $('tableBody');
+      const errEl = $('rangeError');
+      const inputs = readInputs();
+      const check = validate(inputs);
+
+      errEl.textContent = check.error || '';
+      $('csvBtn').style.display = check.ok ? '' : 'none';
+
+      if (!check.ok) {
+        tbody.innerHTML = `<tr><td colspan="5" class="empty"><span class="big">💰</span>${
+          check.error ? 'Fix the inputs above to see your pricing table.' : 'Enter a cost above to see your pricing table.'
+        }</td></tr>`;
+        return false;
+      }
+
+      const { cost, min, max, step } = inputs;
+      const range = max - min;
+      const lowCut = min + range / 3, highCut = min + 2 * range / 3;
+
+      tbody.innerHTML = marginSteps(min, max, step).map(m => {
+        const price  = cost / (1 - m / 100);
+        const profit = price - cost;
+        const markup = profit / cost * 100;
+        const [tier, cls] = m <= lowCut ? ['Entry', 'badge-low']
+                          : m <= highCut ? ['Standard', 'badge-mid']
+                          : ['Premium', 'badge-high'];
+        return `<tr>
+          <td class="c-margin">${m}%</td>
+          <td class="c-price">${money.format(price)}</td>
+          <td class="c-profit">${money.format(profit)}</td>
+          <td class="c-markup">${markup.toFixed(0)}%</td>
+          <td><span class="badge ${cls}">${tier}</span></td>
+        </tr>`;
+      }).join('');
+      return true;
+    }
+
+    // ── Volume section ────────────────────────────────────
+    function toggleVolume() {
+      state.volOpen = !state.volOpen;
+      saveState();
+      syncVolumeUI();
+      render();
+    }
+
+    function syncVolumeUI() {
+      $('volSwitch').classList.toggle('on', state.volOpen);
+      $('volumeSection').classList.toggle('visible', state.volOpen);
+      $('volToggleRow').setAttribute('aria-checked', state.volOpen);
+    }
+
     function addTier() {
-      tiers.push({ qty: '', discount: 0 });
+      state.tiers.push({ qty: '', discount: 0 });
+      saveState();
       renderTierRows();
-      buildAll();
+      render();
     }
-
     function removeTier(i) {
-      tiers.splice(i, 1);
+      state.tiers.splice(i, 1);
+      saveState();
       renderTierRows();
-      buildAll();
+      render();
     }
-
     function updateTier(i, field, val) {
-      tiers[i][field] = val === '' ? '' : parseFloat(val);
-      buildAll();
+      state.tiers[i][field] = val === '' ? '' : parseFloat(val);
+      saveState();
+      render();
     }
 
     function renderTierRows() {
-      const container = document.getElementById('tierRows');
-      container.innerHTML = tiers.map((t, i) => `
+      $('tierRows').innerHTML = state.tiers.map((t, i) => `
         <div class="tier-row">
-          <div class="input-group">
-            ${i === 0 ? '<label>Units / Volume</label>' : ''}
-            <div class="input-row">
-              <input type="number" min="1" step="1" placeholder="e.g. 100"
-                value="${t.qty}"
-                oninput="updateTier(${i}, 'qty', this.value)" />
-              <span class="suffix">units</span>
+          <div class="field">
+            ${i === 0 ? '<label>Deal size (units)</label>' : ''}
+            <div class="control">
+              <input type="number" min="1" step="1" inputmode="numeric" placeholder="100"
+                value="${t.qty}" oninput="updateTier(${i}, 'qty', this.value)" />
+              <span class="affix">units</span>
             </div>
           </div>
-          <div class="input-group">
-            ${i === 0 ? '<label>Volume Discount (optional)</label>' : ''}
-            <div class="input-row">
-              <input type="number" min="0" max="99" step="0.5" placeholder="0"
-                value="${t.discount || ''}"
-                oninput="updateTier(${i}, 'discount', this.value)" />
-              <span class="suffix">%</span>
+          <div class="field">
+            ${i === 0 ? '<label>Volume discount</label>' : ''}
+            <div class="control">
+              <input type="number" min="0" max="99" step="0.5" inputmode="decimal" placeholder="0"
+                value="${t.discount || ''}" oninput="updateTier(${i}, 'discount', this.value)" />
+              <span class="affix">%</span>
             </div>
           </div>
-          <button class="btn-remove" onclick="removeTier(${i})"
-            style="${i === 0 ? 'margin-top:22px' : ''}">Remove</button>
-        </div>
-      `).join('');
+          <button class="btn btn-danger" onclick="removeTier(${i})">Remove</button>
+        </div>`).join('');
     }
 
-    // ── Main build ─────────────────────────────────────────
-    function getMargins() {
-      const minMargin = parseFloat(document.getElementById('minMargin').value);
-      const maxMargin = parseFloat(document.getElementById('maxMargin').value);
-      const increment = parseFloat(document.getElementById('increment').value);
-      const margins = [];
-      for (let m = minMargin; m <= maxMargin + 0.0001; m += increment) {
-        margins.push(Math.round(m * 100) / 100);
-      }
-      return { margins, minMargin, maxMargin, increment };
-    }
+    function renderVolumeTable(unitTableOk) {
+      const card = $('volTableCard');
+      if (!state.volOpen) return;
 
-    function buildAll() {
-      buildUnitTable();
-      if (section2Open) buildVolumeTable();
-    }
+      const { cost, min, max, step } = readInputs();
+      const tiers = state.tiers.filter(t => t.qty > 0 && !isNaN(t.qty));
 
-    function buildUnitTable() {
-      const tbody   = document.getElementById('tableBody');
-      const errorEl = document.getElementById('rangeError');
-      const cost    = parseFloat(document.getElementById('costInput').value);
-      const { margins, minMargin, maxMargin, increment } = getMargins();
+      if (!unitTableOk || tiers.length === 0) { card.style.display = 'none'; return; }
+      card.style.display = '';
 
-      errorEl.textContent = '';
+      $('volHead').innerHTML = '<th>Margin</th>' + tiers.map(t =>
+        `<th class="vol-cell">${num.format(t.qty)} units${t.discount > 0 ? `<span class="pill">−${t.discount}%</span>` : ''}</th>`
+      ).join('');
 
-      if (!document.getElementById('costInput').value || isNaN(cost) || cost <= 0) {
-        tbody.innerHTML = '<tr><td colspan="4" class="empty-state">Enter a valid cost to generate the table.</td></tr>';
-        return;
-      }
-      if (isNaN(minMargin) || isNaN(maxMargin) || isNaN(increment)) return;
-      if (minMargin <= 0 || maxMargin <= 0 || increment <= 0) {
-        errorEl.textContent = 'All margin values must be greater than 0.'; return;
-      }
-      if (minMargin >= 100 || maxMargin >= 100) {
-        errorEl.textContent = 'Margins must be less than 100%.'; return;
-      }
-      if (minMargin >= maxMargin) {
-        errorEl.textContent = 'Min margin must be less than max margin.'; return;
-      }
-      if (increment > (maxMargin - minMargin)) {
-        errorEl.textContent = 'Increment is larger than the margin range.'; return;
-      }
-
-      const range   = maxMargin - minMargin;
-      const lowCut  = minMargin + range / 3;
-      const highCut = minMargin + (2 * range) / 3;
-
-      tbody.innerHTML = margins.map(margin => {
-        const price  = cost / (1 - margin / 100);
-        const profit = price - cost;
-        let tier, badgeClass;
-        if (margin <= lowCut)       { tier = 'Entry';    badgeClass = 'badge-low';  }
-        else if (margin <= highCut) { tier = 'Standard'; badgeClass = 'badge-mid';  }
-        else                        { tier = 'Premium';  badgeClass = 'badge-high'; }
-
-        return `<tr>
-          <td class="margin-col">${margin}%</td>
-          <td class="price-col">$${price.toFixed(2)}</td>
-          <td class="profit-col">$${profit.toFixed(2)}</td>
-          <td><span class="badge ${badgeClass}">${tier}</span></td>
-        </tr>`;
-      }).join('');
-    }
-
-    function buildVolumeTable() {
-      const wrapper = document.getElementById('volTableWrapper');
-      const volErr  = document.getElementById('volError');
-      const head    = document.getElementById('volHead');
-      const body    = document.getElementById('volBody');
-      const cost    = parseFloat(document.getElementById('costInput').value);
-      const { margins, minMargin, maxMargin, increment } = getMargins();
-
-      volErr.textContent = '';
-
-      const validTiers = tiers.filter(t => t.qty > 0 && !isNaN(t.qty));
-      if (validTiers.length === 0 || isNaN(cost) || cost <= 0 ||
-          isNaN(minMargin) || isNaN(maxMargin) || isNaN(increment) ||
-          minMargin >= maxMargin || increment > (maxMargin - minMargin)) {
-        wrapper.style.display = 'none';
-        return;
-      }
-
-      wrapper.style.display = '';
-
-      // Header
-      head.innerHTML = `<th>Margin %</th>` +
-        validTiers.map(t => {
-          const disc = t.discount > 0 ? `<span class="discount-pill">−${t.discount}%</span>` : '';
-          return `<th class="vol-cell">${fmtNum(t.qty)} units${disc}</th>`;
-        }).join('');
-
-      // Rows
-      body.innerHTML = margins.map(margin => {
-        const basePrice = cost / (1 - margin / 100);
-        const cols = validTiers.map(t => {
-          const disc         = t.discount > 0 ? t.discount : 0;
-          const unitPrice    = basePrice * (1 - disc / 100);
-          const totalRev     = unitPrice * t.qty;
-          const totalProfit  = (unitPrice - cost) * t.qty;
-          const effMargin    = ((unitPrice - cost) / unitPrice * 100);
-
-          const effLine = disc > 0
-            ? `<div class="vol-eff-margin">eff. margin ${effMargin.toFixed(1)}%</div>`
-            : '';
-
+      $('volBody').innerHTML = marginSteps(min, max, step).map(m => {
+        const basePrice = cost / (1 - m / 100);
+        const cells = tiers.map(t => {
+          const disc = t.discount > 0 ? t.discount : 0;
+          const unitPrice = basePrice * (1 - disc / 100);
+          const revenue = unitPrice * t.qty;
+          const profit  = (unitPrice - cost) * t.qty;
+          const effMargin = (unitPrice - cost) / unitPrice * 100;
           return `<td class="vol-cell">
-            <div class="vol-unit-price">$${unitPrice.toFixed(2)} / unit</div>
-            <div class="vol-revenue">Rev: $${fmtMoney(totalRev)}</div>
-            <div class="vol-profit">Profit: $${fmtMoney(totalProfit)}</div>
-            ${effLine}
+            <div class="vol-price">${money.format(unitPrice)} <span class="hint">/unit</span></div>
+            <div class="vol-line"><span class="k">Revenue</span>${money.format(revenue)}</div>
+            <div class="vol-line"><span class="k">Profit</span><span class="green">${money.format(profit)}</span></div>
+            ${disc > 0 ? `<div class="vol-line"><span class="k">Margin</span><span class="accent">${effMargin.toFixed(1)}% effective</span></div>` : ''}
           </td>`;
         }).join('');
-
-        return `<tr><td class="margin-col">${margin}%</td>${cols}</tr>`;
+        return `<tr><td class="c-margin">${m}%</td>${cells}</tr>`;
       }).join('');
     }
 
-    // ── Helpers ────────────────────────────────────────────
-    function fmtMoney(n) {
-      return n >= 1000
-        ? n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
-        : n.toFixed(2);
-    }
-    function fmtNum(n) {
-      return n >= 1000 ? n.toLocaleString('en-US') : n;
+    // ── CSV export ────────────────────────────────────────
+    function exportCSV() {
+      const inputs = readInputs();
+      if (!validate(inputs).ok) return;
+      const { cost, min, max, step } = inputs;
+      const rows = [['Margin %', 'Price', 'Profit per unit', 'Markup %']];
+      marginSteps(min, max, step).forEach(m => {
+        const price = cost / (1 - m / 100);
+        rows.push([m, price.toFixed(2), (price - cost).toFixed(2), ((price - cost) / cost * 100).toFixed(1)]);
+      });
+      const blob = new Blob([rows.map(r => r.join(',')).join('\n')], { type: 'text/csv' });
+      const a = Object.assign(document.createElement('a'), {
+        href: URL.createObjectURL(blob), download: 'pricing-sensitivity.csv' });
+      a.click();
+      URL.revokeObjectURL(a.href);
     }
 
-    // ── Init ───────────────────────────────────────────────
+    // ── Render everything ─────────────────────────────────
+    function render() {
+      const ok = renderUnitTable();
+      renderVolumeTable(ok);
+    }
+
+    // ── Init ──────────────────────────────────────────────
+    $('costInput').value = state.cost;
+    $('minMargin').value = state.min;
+    $('maxMargin').value = state.max;
+    $('increment').value = state.step;
+    syncVolumeUI();
     renderTierRows();
-    buildAll();
+    render();
   </script>
 </body>
 </html>
