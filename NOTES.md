@@ -1,6 +1,52 @@
 # babarkkhan.com - Working Notes
 
-Last updated: 8 July 2026 (copy overhaul from Babar's edited docx)
+Last updated: 3 September 2026 (accessibility + structure pass)
+
+## Done 3 Sep 2026 (accessibility, dark mode, heading structure)
+
+Audit pass on both pages: headless render at 1440/820/390px in both themes,
+WCAG contrast on every colour pair, asset and heading-outline checks.
+
+- **Light-mode contrast now passes AA.** Darkened two light-theme tokens:
+  `--teal` `#1B8C6E` -> `#17775D`, `--ink-soft` `#6B7A99` -> `#63718F`. Every
+  accent label, tag and meta line was between 3.86:1 and 4.31:1 before; all
+  now clear 4.5:1. Also raised white-on-navy text: footer `.35` -> `.55` on
+  both pages, invest-card number `.4` -> `.6`, CTA icon links `.45` -> `.6`.
+  Dark theme already passed everywhere and is untouched.
+- **Track-record logos fixed in dark mode.** The dark override swapped the
+  white logo tile for a dark one; BlueNalu and Paradromics are dark marks
+  with no light variant and were invisible. Tile now stays white in both
+  themes. (Still worth replacing the 128px favicons with real brand SVGs.)
+- **Perspective link restored in the mobile nav.** It was `display: none`
+  below 600px, leaving the second page unreachable from the nav on phones.
+  Nav is compacted instead (smaller logo/icons, extra step below 370px).
+  Verified no overlap or horizontal scroll from 320px up.
+- **Heading outlines rebuilt on both pages, with zero copy changes.** Five
+  Lenses had no heading at all and the Perspective page's three sections
+  ("Where I Invest", "Track Record", "How I Work") were `<p>` eyebrows, so
+  the page outline was h1 -> Biotech -> AI Infrastructure -> Let's connect.
+  Section labels without a display line are now `<h2>`; card and item titles
+  are `<h3>`/`<h4>` beneath them.
+- **Dark-mode invest cards are two-tone again.** Header and body were both
+  `#161B22`, flattening the card. Body lifted to `#1A212B`, header dropped to
+  `#0D1117` with a teal bottom border.
+
+### Known, not yet fixed
+
+- `.hero-photo` animates `fadeIn ... forwards`, which ends at `opacity: 1`
+  and permanently overrides both the base `0.75` and the dark-mode `0.85`.
+  Those values now only apply to `prefers-reduced-motion` users, who see a
+  visibly different hero. Decide the intended final opacity, then reconcile.
+- Open content questions (email absent from the site, credentials living
+  only in the aria-hidden ticker, "3 US Patents" vs "multiple US patents",
+  the Animoca "in closing" disclosure, the Sonde role note). With Babar.
+- Two stale remote branches (`claude/pricing-sensitivity-calculator-Bkl6J`,
+  `claude/switch-opus-4.6-y35dr`) both predate the July overhaul and still
+  carry `thesis.html`. Delete them so they are not mistaken for newer work.
+
+---
+
+Previously updated: 8 July 2026 (copy overhaul from Babar's edited docx)
 
 ## Current state
 

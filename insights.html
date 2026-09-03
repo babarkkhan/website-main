@@ -131,11 +131,15 @@
   [data-theme="dark"] .theme-toggle .icon-moon { opacity: 0; transform: rotate(90deg) scale(0.5); }
 
   /* DARK MODE OVERRIDES */
-  [data-theme="dark"] .invest-card-header { background: #161B22; border-bottom: 1px solid var(--line); }
+  /* Dark mode kept the header and body the same tone, flattening the two-tone
+     card. Lift the body and drop the header so the header reads as a block. */
+  [data-theme="dark"] .invest-card { background: #1A212B; }
+  [data-theme="dark"] .invest-card-header { background: #0D1117; border-bottom: 1px solid var(--line-teal); }
   [data-theme="dark"] .invest-card-title { color: var(--navy); }
   [data-theme="dark"] .invest-card-num { color: var(--ink-soft); }
   [data-theme="dark"] .invest-card-sub { color: var(--ink-soft); }
-  [data-theme="dark"] .invest-item:hover { background: var(--bg); }
+  [data-theme="dark"] .invest-item { border-bottom-color: rgba(230,237,243,0.07); }
+  [data-theme="dark"] .invest-item:hover { background: #212a37; }
   /* Keep the logo tile white in dark mode: several track-record marks are dark
      glyphs with no light variant and vanish against a dark tile. */
   [data-theme="dark"] .track-logo { background: #FFFFFF; border-color: var(--line); }
@@ -215,27 +219,27 @@
 
   <!-- SECTION 1: WHERE I INVEST -->
   <div class="thesis-section reveal">
-    <p class="ts-label">Where I Invest</p>
+    <h2 class="ts-label">Where I Invest</h2>
     <div class="invest-grid">
 
       <!-- CARD 01: BIOTECH -->
       <div class="invest-card">
         <div class="invest-card-header">
           <span class="invest-card-num">1</span>
-          <h2 class="invest-card-title">Biotech</h2>
+          <h3 class="invest-card-title">Biotech</h3>
           <p class="invest-card-sub">Technology platforms that improve human health or build resilient production systems.</p>
         </div>
         <div class="invest-card-body">
           <div class="invest-item">
-            <div class="invest-item-title">Healthcare &amp; AI-enabled tools</div>
+            <h4 class="invest-item-title">Healthcare &amp; AI-enabled tools</h4>
             <p class="invest-item-body">Platforms that bring computation into clinical workflows: brain-computer interfaces moving from research to therapeutic devices, agentic AI automating healthcare operations. Technology that compresses the distance between data and clinical decision-making.</p>
           </div>
           <div class="invest-item">
-            <div class="invest-item-title">Biomanufacturing</div>
+            <h4 class="invest-item-title">Biomanufacturing</h4>
             <p class="invest-item-body">Cell-cultured proteins, precision fermentation, and bio-based materials will be the future of how we "grow" food and build the world around us. As more of Earth begins to look like Mars, and we move into Space, I've found the GCC a good analog for humanity's interplanetary future. It helps that the GCC is investing aggressively to localize bio supply chains. Companies that can license or localize production for Middle East and APAC markets have a second growth vector most US VCs overlook.</p>
           </div>
           <div class="invest-item">
-            <div class="invest-item-title">Platform therapeutics</div>
+            <h4 class="invest-item-title">Platform therapeutics</h4>
             <p class="invest-item-body">Novel modalities and AI-native drug discovery that compress timelines and reduce capital intensity. It's been a graveyard, but we're now coming out of the hole. My deep expertise in Antimicrobial Resistance (AMR) keeps me grounded from both biosafety and pandemic-readiness perspectives.</p>
           </div>
         </div>
@@ -245,20 +249,20 @@
       <div class="invest-card">
         <div class="invest-card-header">
           <span class="invest-card-num">2</span>
-          <h2 class="invest-card-title">AI Infrastructure</h2>
+          <h3 class="invest-card-title">AI Infrastructure</h3>
           <p class="invest-card-sub">The enabling layer that makes frontier AI work beyond English-speaking markets.</p>
         </div>
         <div class="invest-card-body">
           <div class="invest-item">
-            <div class="invest-item-title">Mid/Post-training data and RL environments</div>
+            <h4 class="invest-item-title">Mid/Post-training data and RL environments</h4>
             <p class="invest-item-body">The next bottleneck after energy and compute resolve will be the data crunch. As models scale, the quality, depth, diversity, and provenance of AI-ready training data becomes the binding constraint. I'm very interested in this generally, but also specifically in the bits-to-atoms world of biology and chemistry.</p>
           </div>
           <div class="invest-item">
-            <div class="invest-item-title">Multilingual / multimodal datasets</div>
+            <h4 class="invest-item-title">Multilingual / multimodal datasets</h4>
             <p class="invest-item-body">Frontier models are English and Chinese dominant, and we're just scratching the surface with text (and some images). The real human opportunity, and the economic one, is in making AI work for the rest of the world, in the modalities we naturally interact in as humans, like speech.</p>
           </div>
           <div class="invest-item">
-            <div class="invest-item-title">Safety and alignment</div>
+            <h4 class="invest-item-title">Safety and alignment</h4>
             <p class="invest-item-body">Aligning post-training and safety in AI will be a vast economic opportunity on the journey to make AI work for all, while ensuring bad actors are guarded against. You don't need to go far to see how important this is, so I won't harp on it more here.</p>
           </div>
         </div>
@@ -269,7 +273,7 @@
 
   <!-- SECTION 2: TRACK RECORD -->
   <div class="thesis-section reveal">
-    <p class="ts-label">Track Record (Selected)</p>
+    <h2 class="ts-label">Track Record (Selected)</h2>
     <div class="track-grid">
 
       <div class="track-card">
@@ -277,7 +281,7 @@
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="track-logo-fallback" style="display:none">S</div>
         <div>
-          <div class="track-name">Sonde Health</div>
+          <h3 class="track-name">Sonde Health</h3>
           <div class="track-meta">Digital Health · Series A</div>
         </div>
         <div class="track-role">My first deal, ran it end-to-end except sourcing</div>
@@ -288,7 +292,7 @@
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="track-logo-fallback" style="display:none">B</div>
         <div>
-          <div class="track-name">BlueNalu</div>
+          <h3 class="track-name">BlueNalu</h3>
           <div class="track-meta">Cell-Cultured Seafood · Series B</div>
         </div>
         <div class="track-role">Board Member</div>
@@ -299,7 +303,7 @@
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="track-logo-fallback" style="display:none">L</div>
         <div>
-          <div class="track-name">Liberation Bioindustries</div>
+          <h3 class="track-name">Liberation Bioindustries</h3>
           <div class="track-meta">Industrial Biotech · Series A</div>
         </div>
         <div class="track-role">Board Member</div>
@@ -310,7 +314,7 @@
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="track-logo-fallback" style="display:none">P</div>
         <div>
-          <div class="track-name">Paradromics</div>
+          <h3 class="track-name">Paradromics</h3>
           <div class="track-meta">Brain-Computer Interfaces · Series B</div>
         </div>
         <div class="track-role">Board Observer</div>
@@ -321,7 +325,7 @@
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="track-logo-fallback" style="display:none">A</div>
         <div>
-          <div class="track-name">Animoca Brands</div>
+          <h3 class="track-name">Animoca Brands</h3>
           <div class="track-meta">Gaming / Web3 / RWA Tokenization · Series C</div>
         </div>
         <div class="track-role">Investor (in closing)</div>
@@ -333,18 +337,18 @@
 
   <!-- SECTION 3: HOW I WORK -->
   <div class="thesis-section reveal">
-    <p class="ts-label">How I Work</p>
+    <h2 class="ts-label">How I Work</h2>
     <div class="value-grid">
       <div class="value-card">
-        <div class="value-title">GCC market access</div>
+        <h3 class="value-title">GCC market access</h3>
         <p class="value-body">12+ years building relationships with Saudi ministries, the Public Investment Fund (PIF), and the wider GCC ecosystem.</p>
       </div>
       <div class="value-card">
-        <div class="value-title">Regulatory &amp; scientific diligence</div>
+        <h3 class="value-title">Regulatory &amp; scientific diligence</h3>
         <p class="value-body">I conduct my own technical diligence, and underwrite tech + market risk, which is a big differentiator.</p>
       </div>
       <div class="value-card span-full">
-        <div class="value-title">Founder friendly + board governance</div>
+        <h3 class="value-title">Founder friendly + board governance</h3>
         <p class="value-body">I understand the discipline required to represent institutional capital, as I sit on multiple boards. For me, being an ally to founders is the most important thing. Being a founder myself and a scientist, I get how hard it is to move from concept to commercial. I help technical founders communicate with institutional capital and navigate the long road.</p>
       </div>
     </div>
