@@ -33,8 +33,8 @@
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   :root {
     --bg: #FFFFFF; --bg-alt: #F4F6FA; --navy: #0B1D3A; --navy-mid: #2E4A72;
-    --ink-soft: #6B7A99; --teal: #1B8C6E; --teal-light: rgba(27,140,110,0.1);
-    --teal-bright: #4DB896; --line: rgba(11,29,58,0.1); --line-teal: rgba(27,140,110,0.2);
+    --ink-soft: #63718F; --teal: #17775D; --teal-light: rgba(23,119,93,0.1);
+    --teal-bright: #4DB896; --line: rgba(11,29,58,0.1); --line-teal: rgba(23,119,93,0.2);
     --nav-bg: rgba(255,255,255,0.97);
   }
   [data-theme="dark"] {
@@ -49,7 +49,7 @@
 
   /* NAV */
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 16px 56px; background: var(--nav-bg); backdrop-filter: blur(12px); box-shadow: 0 1px 0 var(--line); transition: background 0.4s ease, box-shadow 0.4s ease; }
-  .nav-logo { font-family: 'Playfair Display', serif; font-weight: 400; font-size: 18px; color: var(--navy); text-decoration: none; }
+  .nav-logo { font-family: 'Playfair Display', serif; font-weight: 400; font-size: 18px; color: var(--navy); text-decoration: none; white-space: nowrap; }
   .nav-right { display: flex; gap: 8px; align-items: center; }
   .nav-back { font-size: 13px; letter-spacing: 0.06em; color: var(--ink-soft); text-decoration: none; font-weight: 500; transition: color 0.2s; margin-right: 16px; display: flex; align-items: center; gap: 6px; }
   .nav-back:hover { color: var(--teal); }
@@ -75,7 +75,7 @@
   .invest-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
   .invest-card { background: var(--bg-alt); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
   .invest-card-header { background: var(--navy); padding: 32px 36px; }
-  .invest-card-num { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.4); font-weight: 600; margin-bottom: 10px; display: block; }
+  .invest-card-num { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.6); font-weight: 600; margin-bottom: 10px; display: block; }
   .invest-card-title { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; color: white; line-height: 1.2; margin-bottom: 10px; }
   .invest-card-sub { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.6; font-weight: 300; }
   .invest-card-body { padding: 0; }
@@ -87,8 +87,8 @@
   .invest-item-body { font-size: 15px; color: var(--navy-mid); line-height: 1.8; font-weight: 300; }
 
   /* ── SECTION 2: TRACK RECORD ── */
-  .track-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 32px; }
-  .track-card { background: var(--bg-alt); border: 1px solid var(--line); border-radius: 8px; padding: 24px 20px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px; transition: box-shadow 0.25s, transform 0.25s; }
+  .track-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 32px; }
+  .track-card { background: var(--bg-alt); border: 1px solid var(--line); border-radius: 8px; padding: 24px 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 14px; transition: box-shadow 0.25s, transform 0.25s; }
   .track-card:hover { box-shadow: 0 6px 24px rgba(11,29,58,0.08); transform: translateY(-2px); }
   .track-logo { width: 48px; height: 48px; border-radius: 10px; object-fit: contain; background: white; border: 1px solid var(--line); padding: 4px; }
   .track-logo-fallback { width: 48px; height: 48px; border-radius: 10px; background: var(--navy); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: white; flex-shrink: 0; }
@@ -114,11 +114,11 @@
   .thesis-cta-hed em { color: var(--teal-bright); font-style: italic; }
   .thesis-cta-sub { font-size: 16px; color: rgba(255,255,255,0.55); line-height: 1.85; font-weight: 300; max-width: 560px; }
   .thesis-cta-icons { display: flex; gap: 12px; justify-content: center; }
-  .thesis-cta-link { width: 54px; height: 54px; border: 1px solid rgba(255,255,255,0.15); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.45); text-decoration: none; transition: all 0.25s; }
+  .thesis-cta-link { width: 54px; height: 54px; border: 1px solid rgba(255,255,255,0.25); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.6); text-decoration: none; transition: all 0.25s; }
   .thesis-cta-link:hover { border-color: var(--teal-bright); color: var(--teal-bright); background: rgba(77,184,150,0.12); }
   .thesis-cta-link svg { width: 22px; height: 22px; }
 
-  footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.08); padding: 24px 56px; display: flex; justify-content: space-between; align-items: center; font-size: 14px; color: rgba(255,255,255,0.35); }
+  footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.08); padding: 24px 56px; display: flex; justify-content: space-between; align-items: center; font-size: 14px; color: rgba(255,255,255,0.55); }
   .footer-r { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 500; }
 
   /* THEME TOGGLE */
@@ -131,13 +131,19 @@
   [data-theme="dark"] .theme-toggle .icon-moon { opacity: 0; transform: rotate(90deg) scale(0.5); }
 
   /* DARK MODE OVERRIDES */
-  [data-theme="dark"] .invest-card-header { background: #161B22; border-bottom: 1px solid var(--line); }
+  /* Dark mode kept the header and body the same tone, flattening the two-tone
+     card. Lift the body and drop the header so the header reads as a block. */
+  [data-theme="dark"] .invest-card { background: #1A212B; }
+  [data-theme="dark"] .invest-card-header { background: #0D1117; border-bottom: 1px solid var(--line-teal); }
   [data-theme="dark"] .invest-card-title { color: var(--navy); }
   [data-theme="dark"] .invest-card-num { color: var(--ink-soft); }
   [data-theme="dark"] .invest-card-sub { color: var(--ink-soft); }
-  [data-theme="dark"] .invest-item:hover { background: var(--bg); }
-  [data-theme="dark"] .track-logo { background: var(--bg-alt); border-color: var(--line); }
-  [data-theme="dark"] .track-logo-fallback { background: #161B22; }
+  [data-theme="dark"] .invest-item { border-bottom-color: rgba(230,237,243,0.07); }
+  [data-theme="dark"] .invest-item:hover { background: #212a37; }
+  /* Keep the logo tile white in dark mode: several track-record marks are dark
+     glyphs with no light variant and vanish against a dark tile. */
+  [data-theme="dark"] .track-logo { background: #FFFFFF; border-color: var(--line); }
+  [data-theme="dark"] .track-logo-fallback { background: #FFFFFF; color: #0B1D3A; }
   [data-theme="dark"] .thesis-cta-section { background: #161B22; border-top: 1px solid var(--line); }
   [data-theme="dark"] .thesis-cta-hed { color: var(--navy); }
   [data-theme="dark"] .thesis-cta-hed em { color: var(--teal); }
@@ -167,6 +173,16 @@
     .track-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
     .thesis-cta-inner { padding: 56px 24px; }
     footer { padding: 20px 24px; flex-direction: column; gap: 8px; text-align: center; }
+  }
+  /* Match the homepage nav compaction on phones. */
+  @media (max-width: 600px) {
+    nav { padding: 12px 16px; }
+    .nav-logo { font-size: 16px; }
+    .nav-back { font-size: 11px; margin-right: 10px; }
+    .nav-right { gap: 4px; }
+    .nav-icon, .theme-toggle { width: 34px; height: 34px; border-radius: 8px; }
+    .nav-icon svg { width: 17px; height: 17px; }
+    .theme-toggle svg { width: 15px; height: 15px; }
   }
   @media (max-width: 480px) {
     .track-grid { grid-template-columns: 1fr 1fr; }
@@ -203,27 +219,27 @@
 
   <!-- SECTION 1: WHERE I INVEST -->
   <div class="thesis-section reveal">
-    <p class="ts-label">Where I Invest</p>
+    <h2 class="ts-label">Where I Invest</h2>
     <div class="invest-grid">
 
       <!-- CARD 01: BIOTECH -->
       <div class="invest-card">
         <div class="invest-card-header">
           <span class="invest-card-num">1</span>
-          <h2 class="invest-card-title">Biotech</h2>
+          <h3 class="invest-card-title">Biotech</h3>
           <p class="invest-card-sub">Technology platforms that improve human health or build resilient production systems.</p>
         </div>
         <div class="invest-card-body">
           <div class="invest-item">
-            <div class="invest-item-title">Healthcare &amp; AI-enabled tools</div>
+            <h4 class="invest-item-title">Healthcare &amp; AI-enabled tools</h4>
             <p class="invest-item-body">Platforms that bring computation into clinical workflows: brain-computer interfaces moving from research to therapeutic devices, agentic AI automating healthcare operations. Technology that compresses the distance between data and clinical decision-making.</p>
           </div>
           <div class="invest-item">
-            <div class="invest-item-title">Biomanufacturing</div>
+            <h4 class="invest-item-title">Biomanufacturing</h4>
             <p class="invest-item-body">Cell-cultured proteins, precision fermentation, and bio-based materials will be the future of how we "grow" food and build the world around us. As more of Earth begins to look like Mars, and we move into Space, I've found the GCC a good analog for humanity's interplanetary future. It helps that the GCC is investing aggressively to localize bio supply chains. Companies that can license or localize production for Middle East and APAC markets have a second growth vector most US VCs overlook.</p>
           </div>
           <div class="invest-item">
-            <div class="invest-item-title">Platform therapeutics</div>
+            <h4 class="invest-item-title">Platform therapeutics</h4>
             <p class="invest-item-body">Novel modalities and AI-native drug discovery that compress timelines and reduce capital intensity. It's been a graveyard, but we're now coming out of the hole. My deep expertise in Antimicrobial Resistance (AMR) keeps me grounded from both biosafety and pandemic-readiness perspectives.</p>
           </div>
         </div>
@@ -233,20 +249,20 @@
       <div class="invest-card">
         <div class="invest-card-header">
           <span class="invest-card-num">2</span>
-          <h2 class="invest-card-title">AI Infrastructure</h2>
+          <h3 class="invest-card-title">AI Infrastructure</h3>
           <p class="invest-card-sub">The enabling layer that makes frontier AI work beyond English-speaking markets.</p>
         </div>
         <div class="invest-card-body">
           <div class="invest-item">
-            <div class="invest-item-title">Mid/Post-training data and RL environments</div>
+            <h4 class="invest-item-title">Mid/Post-training data and RL environments</h4>
             <p class="invest-item-body">The next bottleneck after energy and compute resolve will be the data crunch. As models scale, the quality, depth, diversity, and provenance of AI-ready training data becomes the binding constraint. I'm very interested in this generally, but also specifically in the bits-to-atoms world of biology and chemistry.</p>
           </div>
           <div class="invest-item">
-            <div class="invest-item-title">Multilingual / multimodal datasets</div>
+            <h4 class="invest-item-title">Multilingual / multimodal datasets</h4>
             <p class="invest-item-body">Frontier models are English and Chinese dominant, and we're just scratching the surface with text (and some images). The real human opportunity, and the economic one, is in making AI work for the rest of the world, in the modalities we naturally interact in as humans, like speech.</p>
           </div>
           <div class="invest-item">
-            <div class="invest-item-title">Safety and alignment</div>
+            <h4 class="invest-item-title">Safety and alignment</h4>
             <p class="invest-item-body">Aligning post-training and safety in AI will be a vast economic opportunity on the journey to make AI work for all, while ensuring bad actors are guarded against. You don't need to go far to see how important this is, so I won't harp on it more here.</p>
           </div>
         </div>
@@ -257,7 +273,7 @@
 
   <!-- SECTION 2: TRACK RECORD -->
   <div class="thesis-section reveal">
-    <p class="ts-label">Track Record (Selected)</p>
+    <h2 class="ts-label">Track Record (Selected)</h2>
     <div class="track-grid">
 
       <div class="track-card">
@@ -265,10 +281,9 @@
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="track-logo-fallback" style="display:none">S</div>
         <div>
-          <div class="track-name">Sonde Health</div>
+          <h3 class="track-name">Sonde Health</h3>
           <div class="track-meta">Digital Health · Series A</div>
         </div>
-        <div class="track-role">My first deal, ran it end-to-end except sourcing</div>
       </div>
 
       <div class="track-card">
@@ -276,7 +291,7 @@
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="track-logo-fallback" style="display:none">B</div>
         <div>
-          <div class="track-name">BlueNalu</div>
+          <h3 class="track-name">BlueNalu</h3>
           <div class="track-meta">Cell-Cultured Seafood · Series B</div>
         </div>
         <div class="track-role">Board Member</div>
@@ -287,7 +302,7 @@
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="track-logo-fallback" style="display:none">L</div>
         <div>
-          <div class="track-name">Liberation Bioindustries</div>
+          <h3 class="track-name">Liberation Bioindustries</h3>
           <div class="track-meta">Industrial Biotech · Series A</div>
         </div>
         <div class="track-role">Board Member</div>
@@ -298,41 +313,30 @@
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="track-logo-fallback" style="display:none">P</div>
         <div>
-          <div class="track-name">Paradromics</div>
+          <h3 class="track-name">Paradromics</h3>
           <div class="track-meta">Brain-Computer Interfaces · Series B</div>
         </div>
         <div class="track-role">Board Observer</div>
       </div>
 
-      <div class="track-card">
-        <img class="track-logo" src="logos/animocabrands.com.png" alt="Animoca Brands"
-          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="track-logo-fallback" style="display:none">A</div>
-        <div>
-          <div class="track-name">Animoca Brands</div>
-          <div class="track-meta">Gaming / Web3 / RWA Tokenization · Series C</div>
-        </div>
-        <div class="track-role">Investor (in closing)</div>
-      </div>
-
     </div>
-    <p class="track-footnote"><strong>Earlier:</strong> Led preclinical therapeutic pipeline at ContraFect Corp (antimicrobial biotech), contributing to a $20M financing round and eventual IPO. Assess 50+ deep-tech opportunities a year.</p>
+    <p class="track-footnote"><strong>Earlier:</strong> Led preclinical therapeutic pipeline at ContraFect Corp (antimicrobial biotech), contributing to a $20M financing round and eventual IPO.</p>
   </div>
 
   <!-- SECTION 3: HOW I WORK -->
   <div class="thesis-section reveal">
-    <p class="ts-label">How I Work</p>
+    <h2 class="ts-label">How I Work</h2>
     <div class="value-grid">
       <div class="value-card">
-        <div class="value-title">GCC market access</div>
+        <h3 class="value-title">GCC market access</h3>
         <p class="value-body">12+ years building relationships with Saudi ministries, the Public Investment Fund (PIF), and the wider GCC ecosystem.</p>
       </div>
       <div class="value-card">
-        <div class="value-title">Regulatory &amp; scientific diligence</div>
+        <h3 class="value-title">Regulatory &amp; scientific diligence</h3>
         <p class="value-body">I conduct my own technical diligence, and underwrite tech + market risk, which is a big differentiator.</p>
       </div>
       <div class="value-card span-full">
-        <div class="value-title">Founder friendly + board governance</div>
+        <h3 class="value-title">Founder friendly + board governance</h3>
         <p class="value-body">I understand the discipline required to represent institutional capital, as I sit on multiple boards. For me, being an ally to founders is the most important thing. Being a founder myself and a scientist, I get how hard it is to move from concept to commercial. I help technical founders communicate with institutional capital and navigate the long road.</p>
       </div>
     </div>

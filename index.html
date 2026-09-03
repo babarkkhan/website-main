@@ -49,7 +49,7 @@
   html { visibility: visible !important; }
   .reveal { opacity: 1 !important; transform: none !important; }
   .eyebrow, .hero-name, .hero-positioning, .hero-bio { opacity: 1 !important; animation: none !important; }
-  .hero-photo { opacity: 0.75 !important; animation: none !important; }
+  .hero-photo { opacity: var(--hero-opacity) !important; animation: none !important; }
 </style></noscript>
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -59,13 +59,14 @@
     --white: #FFFFFF;
     --navy: #0B1D3A;
     --navy-mid: #2E4A72;
-    --ink-soft: #6B7A99;
-    --teal: #1B8C6E;
-    --teal-light: rgba(27,140,110,0.1);
+    --ink-soft: #63718F;
+    --teal: #17775D;
+    --teal-light: rgba(23,119,93,0.1);
     --line: rgba(11,29,58,0.1);
-    --line-teal: rgba(27,140,110,0.2);
+    --line-teal: rgba(23,119,93,0.2);
     --nav-bg: rgba(255,255,255,0.97);
     --white-rgb: 255,255,255;
+    --hero-opacity: 0.75;
   }
   [data-theme="dark"] {
     --bg: #0D1117;
@@ -80,6 +81,7 @@
     --line-teal: rgba(63,182,139,0.2);
     --nav-bg: rgba(13,17,23,0.97);
     --white-rgb: 13,17,23;
+    --hero-opacity: 0.85;
   }
   html { scroll-behavior: smooth; }
   body { background: var(--bg); color: var(--navy); font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; transition: background 0.4s ease, color 0.4s ease; }
@@ -87,7 +89,7 @@
 
   /* NAV */
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 16px 56px; background: var(--nav-bg); backdrop-filter: blur(12px); box-shadow: 0 1px 0 var(--line); transition: background 0.4s ease, box-shadow 0.4s ease; }
-  .nav-logo { font-family: 'Playfair Display', serif; font-weight: 400; font-size: 18px; color: var(--navy); text-decoration: none; letter-spacing: 0.01em; }
+  .nav-logo { font-family: 'Playfair Display', serif; font-weight: 400; font-size: 18px; color: var(--navy); text-decoration: none; letter-spacing: 0.01em; white-space: nowrap; }
   .nav-right { display: flex; gap: 8px; align-items: center; }
   .nav-link { font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); text-decoration: none; font-weight: 600; transition: color 0.2s; margin-right: 12px; }
   .nav-link:hover { color: var(--teal); }
@@ -107,17 +109,15 @@
 
   /* HERO RIGHT */
   .hero-right { position: relative; overflow: hidden; background: var(--navy); }
-  .hero-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 15%; opacity: 0.75; filter: contrast(1.05); animation: fadeIn 1.2s ease forwards 0.5s; }
+  .hero-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 18%; opacity: var(--hero-opacity); filter: contrast(1.05); animation: fadeIn 1.2s ease forwards 0.5s; }
   .hero-right::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(11,29,58,0.4) 0%, transparent 60%, rgba(27,140,110,0.15) 100%); pointer-events: none; }
   .hero-right::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 280px; background: linear-gradient(to top, var(--navy), transparent); z-index: 2; pointer-events: none; }
 
-  /* TICKER */
-  .ticker-wrap { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--bg-alt); padding: 14px 0; overflow: hidden; white-space: nowrap; }
-  .ticker-track { display: inline-flex; animation: marquee 48s linear infinite; }
-  .ticker-wrap:hover .ticker-track { animation-play-state: paused; }
-  .ticker-item { display: inline-flex; align-items: center; gap: 20px; padding: 0 20px; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-soft); font-weight: 500; }
-  .ticker-item .sep { width: 3px; height: 3px; border-radius: 50%; background: var(--teal); flex-shrink: 0; }
-  .ticker-item.hi { color: var(--teal); }
+  /* CREDENTIALS STRIP (static; replaced the scrolling marquee) */
+  .creds-wrap { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--bg-alt); padding: 20px 24px; }
+  .creds { max-width: 1160px; margin: 0 auto; list-style: none; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 12px 32px; }
+  .creds-item { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-soft); font-weight: 500; line-height: 1.5; }
+  .creds-item.hi { color: var(--teal); }
 
   /* SECTION FRAMEWORK */
   .section-label-row { max-width: 1160px; margin: 0 auto; padding: 72px 64px 32px; }
@@ -179,7 +179,7 @@
   .contact-btn.secondary { background: transparent; color: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.15); }
   .contact-btn.secondary:hover { border-color: #4DB896; color: #4DB896; transform: translateY(-1px); }
 
-  footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.08); padding: 24px 56px; display: flex; justify-content: space-between; align-items: center; font-size: 14px; color: rgba(255,255,255,0.35); }
+  footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.08); padding: 24px 56px; display: flex; justify-content: space-between; align-items: center; font-size: 14px; color: rgba(255,255,255,0.55); }
   .footer-r { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 500; }
 
   /* THEME TOGGLE */
@@ -195,8 +195,7 @@
   [data-theme="dark"] .hero-right { background: #161B22; }
   [data-theme="dark"] .hero-right::after { background: linear-gradient(135deg, rgba(13,17,23,0.5) 0%, transparent 60%, rgba(63,182,139,0.1) 100%); }
   [data-theme="dark"] .hero-right::before { background: linear-gradient(to top, #161B22, transparent); }
-  [data-theme="dark"] .hero-photo { opacity: 0.85; }
-  [data-theme="dark"] .ticker-wrap { background: var(--bg-alt); border-color: var(--line); }
+  [data-theme="dark"] .creds-wrap { background: var(--bg-alt); border-color: var(--line); }
   [data-theme="dark"] .pillar-card { background: var(--bg-alt); }
   [data-theme="dark"] .persp-inner { background: var(--bg-alt); }
   [data-theme="dark"] .contact-section { background: #161B22; border-top: 1px solid var(--line); }
@@ -210,27 +209,28 @@
   [data-theme="dark"] footer { background: #0D1117; border-top: 1px solid var(--line); color: var(--ink-soft); }
   [data-theme="dark"] .band-card { background: var(--bg-alt); }
 
-  .band-card, .pillar-card, .persp-inner, .ticker-wrap, .contact-section, footer, nav, .nav-icon, .hero-right { transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.3s ease; }
+  .band-card, .pillar-card, .persp-inner, .creds-wrap, .contact-section, footer, nav, .nav-icon, .hero-right { transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.3s ease; }
 
   @keyframes up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: var(--hero-opacity); } }
   .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .reveal.on { opacity: 1; transform: none; }
 
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     .eyebrow, .hero-name, .hero-positioning, .hero-bio { animation: none; opacity: 1; }
-    .hero-photo { animation: none; opacity: 0.75; }
-    .ticker-track { animation: none; }
+    .hero-photo { animation: none; opacity: var(--hero-opacity); }
     .reveal { transition: none; opacity: 1; transform: none; }
   }
 
   @media (max-width: 900px) {
     nav { padding: 14px 20px; }
     .hero { grid-template-columns: 1fr; }
-    .hero-right { height: 70vw; }
-    .hero-left { padding: 100px 24px 56px; }
+    /* Photo leads on phones. It clears the fixed nav rather than sitting under
+       it, and the bottom fade is shortened to suit a much shorter frame. */
+    .hero-right { order: -1; height: 78vw; margin-top: 58px; }
+    .hero-right::before { height: 110px; }
+    .hero-left { padding: 36px 24px 56px; }
     .section-label-row, .section-title, .section-lede, .pillar-grid, .lens-list, .roles-row, .persp-band { padding-left: 24px; padding-right: 24px; }
     .section-label-row { padding-top: 48px; padding-bottom: 24px; }
     .pillar-grid, .roles-row { grid-template-columns: 1fr; }
@@ -240,8 +240,24 @@
     .contact-actions { flex-direction: column; align-items: center; }
     footer { padding: 20px 24px; flex-direction: column; gap: 8px; text-align: center; }
   }
+  /* Phones: the Perspective link stays in the nav (it is the only route to the
+     second page above the fold), so the bar is compacted to make room. */
   @media (max-width: 600px) {
-    .nav-link { display: none; }
+    .creds-wrap { padding: 16px 20px; }
+    .creds { gap: 7px 18px; }
+    .creds-item { font-size: 10px; letter-spacing: 0.14em; }
+    nav { padding: 12px 16px; }
+    .nav-logo { font-size: 16px; }
+    .nav-link { font-size: 10px; letter-spacing: 0.04em; margin-right: 8px; }
+    .nav-right { gap: 4px; }
+    .nav-icon, .theme-toggle { width: 34px; height: 34px; border-radius: 8px; }
+    .nav-icon svg { width: 17px; height: 17px; }
+    .theme-toggle svg { width: 15px; height: 15px; }
+  }
+  @media (max-width: 370px) {
+    .nav-link { font-size: 9px; margin-right: 6px; }
+    .nav-icon, .theme-toggle { width: 31px; height: 31px; }
+    .nav-icon svg { width: 15px; height: 15px; }
   }
 </style>
 </head>
@@ -282,29 +298,17 @@
   </div>
 </section>
 
-<div class="ticker-wrap" aria-hidden="true">
-  <div class="ticker-track">
-    <span class="ticker-item hi">$150M+ Transactions Led<span class="sep"></span></span>
-    <span class="ticker-item">20+ Years Across Science &amp; Investing<span class="sep"></span></span>
-    <span class="ticker-item hi">Sovereign Capital<span class="sep"></span></span>
-    <span class="ticker-item">Frontier AI<span class="sep"></span></span>
-    <span class="ticker-item hi">4 Board Roles<span class="sep"></span></span>
-    <span class="ticker-item">3 US Patents<span class="sep"></span></span>
-    <span class="ticker-item hi">MIT Innovators Under 35<span class="sep"></span></span>
-    <span class="ticker-item">US + KSA + UAE Access<span class="sep"></span></span>
-    <span class="ticker-item hi">Trilingual<span class="sep"></span></span>
-    <span class="ticker-item">Riyadh · New York<span class="sep"></span></span>
-    <span class="ticker-item hi">$150M+ Transactions Led<span class="sep"></span></span>
-    <span class="ticker-item">20+ Years Across Science &amp; Investing<span class="sep"></span></span>
-    <span class="ticker-item hi">Sovereign Capital<span class="sep"></span></span>
-    <span class="ticker-item">Frontier AI<span class="sep"></span></span>
-    <span class="ticker-item hi">4 Board Roles<span class="sep"></span></span>
-    <span class="ticker-item">3 US Patents<span class="sep"></span></span>
-    <span class="ticker-item hi">MIT Innovators Under 35<span class="sep"></span></span>
-    <span class="ticker-item">US + KSA + UAE Access<span class="sep"></span></span>
-    <span class="ticker-item hi">Trilingual<span class="sep"></span></span>
-    <span class="ticker-item">Riyadh · New York<span class="sep"></span></span>
-  </div>
+<div class="creds-wrap">
+  <ul class="creds">
+    <li class="creds-item hi">$150M+ Transactions Led</li>
+    <li class="creds-item">20+ Years Across Science &amp; Investing</li>
+    <li class="creds-item hi">MIT Innovators Under 35 (2019)</li>
+    <li class="creds-item">4 Board Roles</li>
+    <li class="creds-item hi">Multiple US Patents</li>
+    <li class="creds-item">35+ Countries Explored</li>
+    <li class="creds-item hi">Trilingual</li>
+    <li class="creds-item">US + KSA + UAE Access</li>
+  </ul>
 </div>
 
 <!-- CURRENT ROLES -->
@@ -315,13 +319,13 @@
   <div class="roles-row reveal" style="margin-top: 28px;">
     <div class="band-card">
       <span class="band-label">Current Role</span>
-      <p class="band-title">Head of Life Science Investments</p>
+      <h3 class="band-title">Head of Life Science Investments</h3>
       <span class="band-org">NEOM Investment Fund · Riyadh</span>
       <p class="band-sub">Leads investments and joint ventures across life sciences and related technology platforms, building the industries of the future in Saudi Arabia.</p>
     </div>
     <div class="band-card">
       <span class="band-label">Current Role</span>
-      <p class="band-title">Co-Founder</p>
+      <h3 class="band-title">Co-Founder</h3>
       <span class="band-org">AI Astrolabe · USA</span>
       <p class="band-sub">Building high-quality multimodal data and low-resource language infrastructure for frontier AI systems and agents.</p>
     </div>
@@ -354,28 +358,28 @@
 
 <!-- FIVE LENSES -->
 <div id="five-lenses">
-  <div class="section-label-row reveal"><p class="section-label">Five Lenses</p></div>
+  <div class="section-label-row reveal"><h2 class="section-label">Five Lenses</h2></div>
 
   <div class="lens-list reveal">
     <div class="lens-item">
-      <div class="lens-label"><span>1</span>Technologist</div>
+      <h3 class="lens-label"><span>1</span>Technologist</h3>
       <p class="lens-body">Built my first computer at age 9 (a 286, 4MB RAM), then spent a decade as a technician in our family's IT business. I competed in esports before it was a career path, and have always been tinkering with technology reshaping how people live and work.</p>
     </div>
     <div class="lens-item">
-      <div class="lens-label"><span>2</span>Scientist</div>
+      <h3 class="lens-label"><span>2</span>Scientist</h3>
       <p class="lens-body">STEM PhD (Biology), and completed my Masters while working full-time at Genzyme Genetics as a scientist. Hold multiple US patents, and was the first of 3 scientists to advance a novel antimicrobial to Phase I clinical trials at an NYC biotech that IPO'd.</p>
     </div>
     <div class="lens-item">
-      <div class="lens-label"><span>3</span>Operator</div>
+      <h3 class="lens-label"><span>3</span>Operator</h3>
       <p class="lens-body">Founded AI Astrolabe to deliver high-quality multimodal data for frontier AI. I run all business operations (legal, finance, contracting, fundraising) with an AI-first approach. I know what it takes to build from zero to profitability.</p>
     </div>
     <div class="lens-item">
-      <div class="lens-label"><span>4</span>Capital Deployer</div>
+      <h3 class="lens-label"><span>4</span>Capital Deployer</h3>
       <p class="lens-body">Led the life science portfolio at NEOM Investment Fund and structured joint ventures to build "Industries of the Future" in Saudi Arabia. Presented to sovereign investment committees at the highest level and moved capital through complex institutional frameworks.</p>
     </div>
     <div class="lens-item">
-      <div class="lens-label"><span>5</span>Connector</div>
-      <p class="lens-body">American citizen, Saudi Premium Resident, UAE Golden Visa holder. 35+ countries. Networks spanning US/China venture, GCC sovereign wealth, and global policy circles.</p>
+      <h3 class="lens-label"><span>5</span>Connector</h3>
+      <p class="lens-body">American citizen, Saudi Premium Resident, UAE Golden Visa holder. Networks spanning US/China venture, GCC sovereign wealth, and global policy circles.</p>
     </div>
   </div>
 </div>
@@ -385,7 +389,7 @@
   <div class="persp-inner">
     <div>
       <span class="persp-label">Perspective</span>
-      <p class="persp-hed">Deep Tech × <em>Applied AI</em></p>
+      <h2 class="persp-hed">Deep Tech × <em>Applied AI</em></h2>
       <p class="persp-sub">Where I focus, the track record behind it, and how I work with founders and co-investors.</p>
     </div>
     <a class="persp-btn" href="insights.html">Click here to read the perspective →</a>
