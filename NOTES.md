@@ -62,7 +62,8 @@ WCAG contrast on every colour pair, asset and heading-outline checks.
   "Frontier AI" and "Riyadh / New York": two rows of four on desktop, five
   lines on phones (tighter type below 600px). No separators, since dots
   stranded themselves at the start of wrapped lines; alternating teal/grey
-  and a 32px column gap do the separating.
+  and a 32px column gap do the separating. "35+ countries" was dropped from
+  Lens 5 so the fact lives in one place only, the strip.
 - **Hero opacity is consistent again.** `--hero-opacity` (0.75 light /
   0.85 dark) is now a token, and `@keyframes fadeIn` animates *to* that
   token instead of to a hard `1`. Verified all four combinations of theme x
@@ -89,7 +90,6 @@ WCAG contrast on every colour pair, asset and heading-outline checks.
   credentials are scoped to its own branch and the delete returns HTTP 403.
   Delete from the GitHub branches page, or locally:
   `git push origin --delete claude/pricing-sensitivity-calculator-Bkl6J claude/switch-opus-4.6-y35dr`
-- **"35+ countries" appears twice** now: in the strip and in Lens 5.
 
 ---
 
