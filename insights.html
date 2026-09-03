@@ -33,8 +33,8 @@
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   :root {
     --bg: #FFFFFF; --bg-alt: #F4F6FA; --navy: #0B1D3A; --navy-mid: #2E4A72;
-    --ink-soft: #6B7A99; --teal: #1B8C6E; --teal-light: rgba(27,140,110,0.1);
-    --teal-bright: #4DB896; --line: rgba(11,29,58,0.1); --line-teal: rgba(27,140,110,0.2);
+    --ink-soft: #63718F; --teal: #17775D; --teal-light: rgba(23,119,93,0.1);
+    --teal-bright: #4DB896; --line: rgba(11,29,58,0.1); --line-teal: rgba(23,119,93,0.2);
     --nav-bg: rgba(255,255,255,0.97);
   }
   [data-theme="dark"] {
@@ -49,7 +49,7 @@
 
   /* NAV */
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 16px 56px; background: var(--nav-bg); backdrop-filter: blur(12px); box-shadow: 0 1px 0 var(--line); transition: background 0.4s ease, box-shadow 0.4s ease; }
-  .nav-logo { font-family: 'Playfair Display', serif; font-weight: 400; font-size: 18px; color: var(--navy); text-decoration: none; }
+  .nav-logo { font-family: 'Playfair Display', serif; font-weight: 400; font-size: 18px; color: var(--navy); text-decoration: none; white-space: nowrap; }
   .nav-right { display: flex; gap: 8px; align-items: center; }
   .nav-back { font-size: 13px; letter-spacing: 0.06em; color: var(--ink-soft); text-decoration: none; font-weight: 500; transition: color 0.2s; margin-right: 16px; display: flex; align-items: center; gap: 6px; }
   .nav-back:hover { color: var(--teal); }
@@ -75,7 +75,7 @@
   .invest-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
   .invest-card { background: var(--bg-alt); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
   .invest-card-header { background: var(--navy); padding: 32px 36px; }
-  .invest-card-num { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.4); font-weight: 600; margin-bottom: 10px; display: block; }
+  .invest-card-num { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.6); font-weight: 600; margin-bottom: 10px; display: block; }
   .invest-card-title { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; color: white; line-height: 1.2; margin-bottom: 10px; }
   .invest-card-sub { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.6; font-weight: 300; }
   .invest-card-body { padding: 0; }
@@ -114,11 +114,11 @@
   .thesis-cta-hed em { color: var(--teal-bright); font-style: italic; }
   .thesis-cta-sub { font-size: 16px; color: rgba(255,255,255,0.55); line-height: 1.85; font-weight: 300; max-width: 560px; }
   .thesis-cta-icons { display: flex; gap: 12px; justify-content: center; }
-  .thesis-cta-link { width: 54px; height: 54px; border: 1px solid rgba(255,255,255,0.15); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.45); text-decoration: none; transition: all 0.25s; }
+  .thesis-cta-link { width: 54px; height: 54px; border: 1px solid rgba(255,255,255,0.25); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.6); text-decoration: none; transition: all 0.25s; }
   .thesis-cta-link:hover { border-color: var(--teal-bright); color: var(--teal-bright); background: rgba(77,184,150,0.12); }
   .thesis-cta-link svg { width: 22px; height: 22px; }
 
-  footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.08); padding: 24px 56px; display: flex; justify-content: space-between; align-items: center; font-size: 14px; color: rgba(255,255,255,0.35); }
+  footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.08); padding: 24px 56px; display: flex; justify-content: space-between; align-items: center; font-size: 14px; color: rgba(255,255,255,0.55); }
   .footer-r { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 500; }
 
   /* THEME TOGGLE */
@@ -136,8 +136,10 @@
   [data-theme="dark"] .invest-card-num { color: var(--ink-soft); }
   [data-theme="dark"] .invest-card-sub { color: var(--ink-soft); }
   [data-theme="dark"] .invest-item:hover { background: var(--bg); }
-  [data-theme="dark"] .track-logo { background: var(--bg-alt); border-color: var(--line); }
-  [data-theme="dark"] .track-logo-fallback { background: #161B22; }
+  /* Keep the logo tile white in dark mode: several track-record marks are dark
+     glyphs with no light variant and vanish against a dark tile. */
+  [data-theme="dark"] .track-logo { background: #FFFFFF; border-color: var(--line); }
+  [data-theme="dark"] .track-logo-fallback { background: #FFFFFF; color: #0B1D3A; }
   [data-theme="dark"] .thesis-cta-section { background: #161B22; border-top: 1px solid var(--line); }
   [data-theme="dark"] .thesis-cta-hed { color: var(--navy); }
   [data-theme="dark"] .thesis-cta-hed em { color: var(--teal); }
@@ -167,6 +169,16 @@
     .track-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
     .thesis-cta-inner { padding: 56px 24px; }
     footer { padding: 20px 24px; flex-direction: column; gap: 8px; text-align: center; }
+  }
+  /* Match the homepage nav compaction on phones. */
+  @media (max-width: 600px) {
+    nav { padding: 12px 16px; }
+    .nav-logo { font-size: 16px; }
+    .nav-back { font-size: 11px; margin-right: 10px; }
+    .nav-right { gap: 4px; }
+    .nav-icon, .theme-toggle { width: 34px; height: 34px; border-radius: 8px; }
+    .nav-icon svg { width: 17px; height: 17px; }
+    .theme-toggle svg { width: 15px; height: 15px; }
   }
   @media (max-width: 480px) {
     .track-grid { grid-template-columns: 1fr 1fr; }

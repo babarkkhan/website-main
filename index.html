@@ -59,11 +59,11 @@
     --white: #FFFFFF;
     --navy: #0B1D3A;
     --navy-mid: #2E4A72;
-    --ink-soft: #6B7A99;
-    --teal: #1B8C6E;
-    --teal-light: rgba(27,140,110,0.1);
+    --ink-soft: #63718F;
+    --teal: #17775D;
+    --teal-light: rgba(23,119,93,0.1);
     --line: rgba(11,29,58,0.1);
-    --line-teal: rgba(27,140,110,0.2);
+    --line-teal: rgba(23,119,93,0.2);
     --nav-bg: rgba(255,255,255,0.97);
     --white-rgb: 255,255,255;
   }
@@ -87,7 +87,7 @@
 
   /* NAV */
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 16px 56px; background: var(--nav-bg); backdrop-filter: blur(12px); box-shadow: 0 1px 0 var(--line); transition: background 0.4s ease, box-shadow 0.4s ease; }
-  .nav-logo { font-family: 'Playfair Display', serif; font-weight: 400; font-size: 18px; color: var(--navy); text-decoration: none; letter-spacing: 0.01em; }
+  .nav-logo { font-family: 'Playfair Display', serif; font-weight: 400; font-size: 18px; color: var(--navy); text-decoration: none; letter-spacing: 0.01em; white-space: nowrap; }
   .nav-right { display: flex; gap: 8px; align-items: center; }
   .nav-link { font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); text-decoration: none; font-weight: 600; transition: color 0.2s; margin-right: 12px; }
   .nav-link:hover { color: var(--teal); }
@@ -179,7 +179,7 @@
   .contact-btn.secondary { background: transparent; color: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.15); }
   .contact-btn.secondary:hover { border-color: #4DB896; color: #4DB896; transform: translateY(-1px); }
 
-  footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.08); padding: 24px 56px; display: flex; justify-content: space-between; align-items: center; font-size: 14px; color: rgba(255,255,255,0.35); }
+  footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.08); padding: 24px 56px; display: flex; justify-content: space-between; align-items: center; font-size: 14px; color: rgba(255,255,255,0.55); }
   .footer-r { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 500; }
 
   /* THEME TOGGLE */
@@ -240,8 +240,21 @@
     .contact-actions { flex-direction: column; align-items: center; }
     footer { padding: 20px 24px; flex-direction: column; gap: 8px; text-align: center; }
   }
+  /* Phones: the Perspective link stays in the nav (it is the only route to the
+     second page above the fold), so the bar is compacted to make room. */
   @media (max-width: 600px) {
-    .nav-link { display: none; }
+    nav { padding: 12px 16px; }
+    .nav-logo { font-size: 16px; }
+    .nav-link { font-size: 10px; letter-spacing: 0.04em; margin-right: 8px; }
+    .nav-right { gap: 4px; }
+    .nav-icon, .theme-toggle { width: 34px; height: 34px; border-radius: 8px; }
+    .nav-icon svg { width: 17px; height: 17px; }
+    .theme-toggle svg { width: 15px; height: 15px; }
+  }
+  @media (max-width: 370px) {
+    .nav-link { font-size: 9px; margin-right: 6px; }
+    .nav-icon, .theme-toggle { width: 31px; height: 31px; }
+    .nav-icon svg { width: 15px; height: 15px; }
   }
 </style>
 </head>
