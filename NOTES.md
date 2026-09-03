@@ -51,26 +51,48 @@ WCAG contrast on every colour pair, asset and heading-outline checks.
 - **Recognition strip stays removed** (WEF/Milken, degree line). Confirmed
   intentional, not an oversight.
 
+## Done 3 Sep 2026 (static credentials, hero opacity, hero framing)
+
+- **The scrolling marquee is gone.** Replaced by a static `<ul class="creds">`
+  strip. Because it no longer moves it is real content, so `aria-hidden` was
+  dropped and the credentials finally reach screen readers and search
+  engines. `.ticker-*` CSS and `@keyframes marquee` are deleted. MIT now
+  carries its date, "MIT Innovators Under 35 (2019)", and "35+ Countries
+  Explored" was added. Eleven items: three lines on desktop, seven on
+  phones (tighter type below 600px). No separators, since dots stranded
+  themselves at the start of wrapped lines; alternating teal/grey and a
+  32px column gap do the separating.
+- **Hero opacity is consistent again.** `--hero-opacity` (0.75 light /
+  0.85 dark) is now a token, and `@keyframes fadeIn` animates *to* that
+  token instead of to a hard `1`. Verified all four combinations of theme x
+  `prefers-reduced-motion` land on the same value, and that the value
+  re-resolves correctly when the theme is toggled at runtime.
+- **Hero photos re-cropped to a common frame.** They were 1600x1700 (light)
+  and 1600x1970 (dark) with different subject scales, so the crop jumped on
+  every theme toggle. Both are now 1480x1572 with the subject at the same
+  scale and position (detected by background-differencing, then cropped to
+  match: subject centre 45.4%, head top 8.3%). Neither was upscaled.
+  Originals remain in git history.
+- **Mobile hero reworked.** The photo now leads on phones (`order: -1`), is
+  taller (78vw), clears the fixed nav rather than being clipped by it, and
+  its bottom fade drops from 280px to 110px so it does not swamp a short
+  frame. Face and name are above the fold; previously the photo sat below a
+  nine-line bio, cropped to the forehead. DOM order is unchanged, so
+  reading and tab order are unaffected.
+
 ### Known, not yet fixed
 
-- `.hero-photo` animates `fadeIn ... forwards`, which ends at `opacity: 1`
-  and permanently overrides both the base `0.75` and the dark-mode `0.85`.
-  Those values now only apply to `prefers-reduced-motion` users, who see a
-  visibly different hero. Decide the intended final opacity, then reconcile.
-- **Credentials live only in the ticker**, which is `aria-hidden="true"`
-  (correct for a marquee). $150M+, MIT Innovators Under 35, multiple US
-  patents and 4 board roles therefore reach no screen reader and no search
-  engine, and a sighted visitor only catches them mid-scroll. Removing the
-  stats block was right; these facts still need a non-decorative home.
-  Recommendation pending Babar's call.
-- **Mobile hero.** Stacked, the photo sits below name + positioning + a
-  nine-line bio, renders at `70vw` with `object-position: center 15%`, and
-  is cropped to the top of the head below the fold. The two hero images are
-  also different aspect ratios (1600x1700 light, 1600x1970 dark), so the
-  crop shifts when the theme is toggled.
-- Two stale remote branches (`claude/pricing-sensitivity-calculator-Bkl6J`,
-  `claude/switch-opus-4.6-y35dr`) both predate the July overhaul and still
-  carry `thesis.html`. Delete them so they are not mistaken for newer work.
+- **Two stale remote branches** (`claude/pricing-sensitivity-calculator-Bkl6J`,
+  `claude/switch-opus-4.6-y35dr`) predate the July overhaul and still carry
+  `thesis.html`. Babar approved deleting them, but this session's git
+  credentials are scoped to its own branch and the delete returns HTTP 403.
+  Delete from the GitHub branches page, or locally:
+  `git push origin --delete claude/pricing-sensitivity-calculator-Bkl6J claude/switch-opus-4.6-y35dr`
+- **Credentials strip length.** Eleven items was fine as a marquee, where
+  length was hidden; static, it is a visible list. "Sovereign Capital" and
+  "Frontier AI" are positioning phrases rather than credentials, and
+  "Riyadh &middot; New York" also appears in the footer. Worth trimming.
+- **"35+ countries" appears twice** now: in the strip and in Lens 5.
 
 ---
 
