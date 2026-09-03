@@ -1,6 +1,6 @@
 # babarkkhan.com - Working Notes
 
-Last updated: 3 September 2026 (accessibility + structure pass)
+Last updated: 3 September 2026 (accessibility + structure pass; merged and live on main)
 
 ## Done 3 Sep 2026 (accessibility, dark mode, heading structure)
 
@@ -84,12 +84,7 @@ WCAG contrast on every colour pair, asset and heading-outline checks.
 
 ### Known, not yet fixed
 
-- **Two stale remote branches** (`claude/pricing-sensitivity-calculator-Bkl6J`,
-  `claude/switch-opus-4.6-y35dr`) predate the July overhaul and still carry
-  `thesis.html`. Babar approved deleting them, but this session's git
-  credentials are scoped to its own branch and the delete returns HTTP 403.
-  Delete from the GitHub branches page, or locally:
-  `git push origin --delete claude/pricing-sensitivity-calculator-Bkl6J claude/switch-opus-4.6-y35dr`
+- Nothing outstanding from the 3 Sep pass.
 
 ---
 
@@ -99,7 +94,7 @@ Previously updated: 8 July 2026 (copy overhaul from Babar's edited docx)
 
 Two-page static site on GitHub Pages (CNAME: babarkkhan.com).
 
-- `index.html` - homepage. Positioning: **global executive and operator at the edge of technology and AI**. Sections: hero (positioning line + 3-sentence third-person bio, no stats block), credential ticker (now includes $150M+ and 20+ years), Current Roles, Invest/Build/Bridge, Five Lenses, Perspective teaser, contact CTA.
+- `index.html` - homepage. Positioning: **global executive and operator at the edge of technology and AI**. Sections: hero (positioning line + 3-sentence third-person bio, no stats block), static credentials strip (8 items; replaced the scrolling ticker 3 Sep), Current Roles, Invest/Build/Bridge, Five Lenses, Perspective teaser, contact CTA.
 - `insights.html` - the "Perspective" page (renamed from thesis.html 8 Jul; visible label stays "Perspective"). Sections: Deep Tech x Applied AI thesis, Where I Invest (Biotech + AI Infrastructure), Track Record (4 companies since Animoca was removed 3 Sep), How I Work (3 cards, last spans full width), CTA.
 - Booking link everywhere: **https://cal.com/bkhan**
 - Name: **Babar Khan** in nav/footer/body; the homepage `<title>`/OG/Twitter title use the full **Babar Khalid Khan** (Babar's choice in the docx). No em dashes anywhere in copy (hard writing rule).
