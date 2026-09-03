@@ -1,6 +1,86 @@
 # babarkkhan.com - Working Notes
 
-Last updated: 3 September 2026 (dark-only simplification; merged and live on main)
+Last updated: 3 September 2026 (entity / Knowledge Panel pass, awaiting review)
+
+## PROPOSED, NOT YET DEPLOYED (entity + Knowledge Panel pass)
+
+Everything in this section sits on `claude/babarkkhan-knowledge-panel-nkrg9r`
+and is **not on `origin/main`**, so it is not live. Babar reviews the schema and
+metadata before it merges.
+
+**Deployment note, important:** `origin/main` is still at `bb6794d` (8 July).
+The whole 3 September run (accessibility, dark-only, type scale, credentials
+strip) is also only on this branch. The live site therefore still carries the
+light/dark toggle and the `html { visibility: hidden }` head script. Merging
+this branch ships both passes at once.
+
+### One entity, one @id
+
+`https://babarkkhan.com/#person` is the single Person node for the whole site.
+The full node is repeated **verbatim** on `/` and `/about/` (identical values,
+identical @id, so a crawler reading either page in isolation gets the entity
+without two competing entities existing). `insights.html` carries only a
+minimal reference to it. Supporting @ids: `#website`, `#headshot`, plus
+Organization nodes for NEOM Investment Fund and AI Astrolabe.
+
+If a fact changes, it has to change in **both** `index.html` and
+`about/index.html`. There is no build step to keep them in sync.
+
+`founder` runs Organization -> Person, never the reverse. The AI Astrolabe
+Organization node declares `founder: {"@id": ".../#person"}`; the Person does
+not carry a `founder` property (schema.org does not define one on Person).
+
+### Only supportable claims go in schema
+
+Anything not verifiable from a source, or not visible on the page, is omitted
+rather than guessed. Currently omitted and waiting on Babar:
+
+- **MS and BS institutions.** Public sources report MS Biology at UMDNJ (merged
+  into Rutgers in 2013) and BS Organismal and Environmental Biology at SUNY
+  (campus unknown). Not on the page, not in `alumniOf`. There is a comment in
+  `about/index.html` at the Education section ready to fill in.
+- **ORCID, Crunchbase, ResearchGate, KAUST personal page.** Not in `sameAs`
+  until Babar confirms he maintains them and they are the right person.
+
+`sameAs` holds identity URLs only (LinkedIn, X, Google Scholar, the official
+Innovators Under 35 profile). Press coverage and speaker bios are visible links
+in the Recognition section, never `sameAs`.
+
+### Copy changes that need Babar's eye
+
+- Homepage `<title>` is now **Babar Khan | Investor, AI Founder & Technology
+  Executive**. This overrides the July docx decision to lead with the full legal
+  name; the full name lives in `alternateName` and in the About page bio.
+- H1 is **Babar Khan**, no "PhD". PhD survives in the eyebrow-adjacent bio line,
+  `honorificSuffix`, and `alternateName`.
+- Credentials strip: "MIT Innovators Under 35 (2019)" -> "MIT Tech Review
+  Innovator Under 35 (2019)". KAUST's own newsroom describes it as MIT
+  Technology Review Arabia's MENA list; the wording should not overclaim.
+- New sentence reconciling the names, on both `/` and `/about/`: "Babar Khan,
+  who publishes academically as Babar Khalid Khan, PhD, is an investor,
+  technology executive and entrepreneur."
+
+### Architecture (deliberately three pages, not six)
+
+`/`, `/about/`, `/insights.html`. The brief sketched six pages; splitting the
+current content that far would produce thin, near-duplicate pages, which hurts
+entity resolution more than it helps. Experience, investment leadership and
+current roles stay as sections. `insights.html` keeps its filename: it is
+already indexed and renaming it a second time would churn a live URL.
+
+### Assets
+
+`babar-khan-headshot.jpg` (1200x1200) is the canonical headshot, cut from
+`photo-profile_white.JPG`. Stable URL, meaningful filename, alt text "Babar
+Khan". **Do not change this URL.** `og-image.jpg` stays the 1200x630 share card
+for `og:image`; it is the same photograph, so identity stays consistent.
+
+### Still to do (not code)
+
+Search Console verification under babar@khantet.com, sitemap submission, URL
+inspection, Rich Results test, and the Phase 9 cleanup of external profiles.
+
+
 
 ## Done 3 Sep 2026 (accessibility, dark mode, heading structure)
 
@@ -212,8 +292,8 @@ Two-page static site on GitHub Pages (CNAME: babarkkhan.com).
 
 - **Writing/ideas surface** ("Notes"/essays page). Note the page is now literally called `insights.html`, so a future essays section could live here or as a sibling. Highest-leverage future addition for the "edge of AI" positioning. Not started.
 - Track-record logos are 128px favicons pulled from each company's site; fine at 48px display, but could be replaced with proper brand SVGs for crispness.
-- Decide whether to delete the unreferenced original photos from the repo (they live in git history regardless).
-- Optional SEO extras skipped as low-value for a 2-page site: sitemap.xml, robots.txt.
+- Decide whether to delete the unreferenced original photos from the repo (they live in git history regardless). Note `photo-profile_white.JPG` is now the source for `babar-khan-headshot.jpg`, so keep it.
+- ~~Optional SEO extras skipped as low-value for a 2-page site: sitemap.xml, robots.txt.~~ Both added in the entity pass; the Knowledge Panel brief reversed this call.
 
 ## Conventions (do not break)
 
@@ -222,4 +302,7 @@ Two-page static site on GitHub Pages (CNAME: babarkkhan.com).
 - Zero build step, zero dependencies: hand-written HTML/CSS/JS only, Google Fonts is the sole external call.
 - **Dark only** since 3 Sep 2026. No theme toggle, no `data-theme`, no localStorage. The hero uses `photo-dark.webp` directly.
 - The Perspective page file is `insights.html` (renamed from thesis.html on 8 Jul 2026). Keep the visible label "Perspective".
+- **One Person entity only**, at `https://babarkkhan.com/#person`. Never add a second Person node with a different @id, and never let the copies on `/` and `/about/` drift apart.
+- **Nothing in schema that is not visible and supportable on the page.** `sameAs` is for identity, not for links.
+- `babar-khan-headshot.jpg` is a stable URL. Do not rename or move it.
 - Local preview: any static server from the repo root (the review sessions use `python -m http.server`).
