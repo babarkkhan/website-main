@@ -58,10 +58,11 @@ WCAG contrast on every colour pair, asset and heading-outline checks.
   dropped and the credentials finally reach screen readers and search
   engines. `.ticker-*` CSS and `@keyframes marquee` are deleted. MIT now
   carries its date, "MIT Innovators Under 35 (2019)", and "35+ Countries
-  Explored" was added. Eleven items: three lines on desktop, seven on
-  phones (tighter type below 600px). No separators, since dots stranded
-  themselves at the start of wrapped lines; alternating teal/grey and a
-  32px column gap do the separating.
+  Explored" was added. Eight items after Babar trimmed "Sovereign Capital",
+  "Frontier AI" and "Riyadh / New York": two rows of four on desktop, five
+  lines on phones (tighter type below 600px). No separators, since dots
+  stranded themselves at the start of wrapped lines; alternating teal/grey
+  and a 32px column gap do the separating.
 - **Hero opacity is consistent again.** `--hero-opacity` (0.75 light /
   0.85 dark) is now a token, and `@keyframes fadeIn` animates *to* that
   token instead of to a hard `1`. Verified all four combinations of theme x
@@ -88,10 +89,6 @@ WCAG contrast on every colour pair, asset and heading-outline checks.
   credentials are scoped to its own branch and the delete returns HTTP 403.
   Delete from the GitHub branches page, or locally:
   `git push origin --delete claude/pricing-sensitivity-calculator-Bkl6J claude/switch-opus-4.6-y35dr`
-- **Credentials strip length.** Eleven items was fine as a marquee, where
-  length was hidden; static, it is a visible list. "Sovereign Capital" and
-  "Frontier AI" are positioning phrases rather than credentials, and
-  "Riyadh &middot; New York" also appears in the footer. Worth trimming.
 - **"35+ countries" appears twice** now: in the strip and in Lens 5.
 
 ---
