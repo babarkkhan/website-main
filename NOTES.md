@@ -1,6 +1,6 @@
 # babarkkhan.com - Working Notes
 
-Last updated: 3 September 2026 (accessibility + structure pass; merged and live on main)
+Last updated: 3 September 2026 (dark-only simplification; merged and live on main)
 
 ## Done 3 Sep 2026 (accessibility, dark mode, heading structure)
 
@@ -50,6 +50,53 @@ WCAG contrast on every colour pair, asset and heading-outline checks.
   gone rather than completed.
 - **Recognition strip stays removed** (WEF/Milken, degree line). Confirmed
   intentional, not an oversight.
+
+## Done 3 Sep 2026 (dark only; light theme and toggle removed)
+
+Babar wants the site simplified while he works on something else: **dark mode
+only, no switch.** He may reinstate light mode later, so nothing was thrown
+away that would be expensive to rebuild.
+
+- The dark palette is now the sole `:root`. The `[data-theme="dark"]` block
+  is gone and its 34 overrides were folded into the base rules, using tokens
+  rather than the hard-coded hexes they carried.
+- Removed: the toggle button in both navs, `applyTheme` / `toggleTheme`, the
+  `bkk-theme` localStorage key, and the `html { visibility: hidden }` plus
+  inline head script that existed only to stop a theme flash. That last one
+  also removed a real failure mode: if the inline script had ever been
+  blocked, the page would have stayed blank.
+- Added `<meta name="color-scheme" content="dark">` so form controls and
+  scrollbars match.
+- Dead tokens dropped: `--white`, `--white-rgb`, `--line-teal` (index),
+  `--teal-bright` (insights). Theme cross-fade transitions on `body`, `nav`
+  and the blanket card rule are gone; each card keeps its own hover
+  transition. Removing the blanket rule also restored `.pillar-card`'s
+  transform transition, which the blanket rule had been clobbering.
+- JavaScript on both pages is down to the four-line IntersectionObserver.
+  index.html 29.2 -> 24.3 KB, insights.html 27.4 -> 22.8 KB.
+
+**`photo-light.webp` is kept but unreferenced.** The hero uses
+`photo-dark.webp` directly (no `data-light`/`data-dark` swap). Both files are
+the same 1480x1572 aligned crop, so restoring light mode is just wiring the
+swap back up.
+
+Verified by pixel-diffing full-page dark screenshots before and after: the
+two pages are **identical outside the nav band**, where the toggle used to
+be. The CSS fold and the token cleanup were each diffed separately and came
+back pixel-identical.
+
+One regression caught during this work: the rule that removed `.theme-toggle`
+CSS also matched three combined selectors of the form
+`.nav-icon, .theme-toggle { ... }`, which silently took the mobile
+`.nav-icon` sizing with it and grew the nav from 52px to 66px tall. Restored
+as `.nav-icon`-only rules and re-verified from 320px up.
+
+### If light mode comes back
+
+Reintroduce a `[data-theme="light"]` token block, re-add the toggle button
+and the small theme script, and restore the hero `data-light`/`data-dark`
+swap. Every value needed is in this file's 3 Sep entries and in git history
+at `4890518`.
 
 ## Done 3 Sep 2026 (type scale: 12px floor)
 
@@ -173,6 +220,6 @@ Two-page static site on GitHub Pages (CNAME: babarkkhan.com).
 - No em dashes in any copy. Use commas, periods, parentheses, or spaced hyphens.
 - **No font size below 12px, anywhere.** Numbered markers must be at least as large as the copy they label.
 - Zero build step, zero dependencies: hand-written HTML/CSS/JS only, Google Fonts is the sole external call.
-- Dark mode: `data-theme="dark"` on `<html>`, persisted in localStorage key `bkk-theme`, shared across both pages. Hero photo swaps via data-light/data-dark attributes.
+- **Dark only** since 3 Sep 2026. No theme toggle, no `data-theme`, no localStorage. The hero uses `photo-dark.webp` directly.
 - The Perspective page file is `insights.html` (renamed from thesis.html on 8 Jul 2026). Keep the visible label "Perspective".
 - Local preview: any static server from the repo root (the review sessions use `python -m http.server`).
