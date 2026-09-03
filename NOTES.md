@@ -51,6 +51,48 @@ WCAG contrast on every colour pair, asset and heading-outline checks.
 - **Recognition strip stays removed** (WEF/Milken, degree line). Confirmed
   intentional, not an oversight.
 
+## Done 3 Sep 2026 (type scale: 12px floor)
+
+Babar's rule: **nothing below 12px anywhere on the site.** Readability and
+scannability come first. Sixteen declarations were under that floor.
+
+Full scale now in use (fluid clamps on the big heads are unchanged):
+
+| px | used for |
+|----|----------|
+| 12 | mobile-only steps: `.nav-link`, `.nav-back`, `.creds-item` |
+| 13 | uppercase micro-labels: section/band/persp labels, `.ts-label`, `.band-org`, `.creds-item`, `.track-meta`, `.track-role`, `.footer-r`, nav links |
+| 14 | page eyebrows: `.eyebrow`, `.thesis-eyebrow` |
+| 15 | small copy and buttons: `.invest-card-sub`, `.invest-item-title`, `.value-title`, `.track-footnote`, `.persp-btn`, `.contact-btn`, footer |
+| 16 | body copy and numbered markers: `.pillar-card p`, `.band-sub`, `.persp-sub`, `.invest-item-body`, `.value-body`, `.track-name`, `.pillar-num`, `.lens-label span` |
+| 17 | lead copy: `.hero-bio p`, `.lens-body`, `.contact-lede`, `.thesis-cta-sub` |
+| 18 | `.invest-card-num`, `.thesis-subtitle`, `.nav-logo` |
+| 22-26 | card and lens titles |
+
+Specifically fixed from Babar's notes:
+
+- **The 1 / 2 on the invest cards** were 11px, smaller than the 14px copy
+  they labelled. Now 18px, larger than the 15px sub beneath them.
+- **"Perspective"** (`.thesis-eyebrow`) 11px -> 14px, and every other
+  eyebrow with it.
+- **Track record** was the smallest block on the site: names 13 -> 16px,
+  sector/stage meta and role 11 -> 13px, footnote 14 -> 15px.
+
+Two layout consequences that had to be handled:
+
+- `.track-grid` used `1fr` tracks, which cannot shrink below their widest
+  word. At 16px "Bioindustries" pushed the grid 2px past the viewport at
+  320px. Tracks are now `minmax(0, 1fr)`, `.track-name` gets
+  `overflow-wrap: break-word`, and card padding tightens below 480px.
+  "Series A/B" uses a non-breaking space so the letter never orphans.
+- The mobile nav lost its slack once `.nav-link` went 10px -> 12px. The
+  tight-nav breakpoint moved from 370px to 385px (375px is a very common
+  width and had none) and that block now also trims the logo, icon sizes,
+  gaps and nav padding. Re-verified from 320px up with deliberately wider
+  substitute fonts: no overlap, no wrap, no horizontal scroll.
+
+Contrast was re-checked after the resize; all pairs still clear 4.5:1.
+
 ## Done 3 Sep 2026 (static credentials, hero opacity, hero framing)
 
 - **The scrolling marquee is gone.** Replaced by a static `<ul class="creds">`
@@ -129,6 +171,7 @@ Two-page static site on GitHub Pages (CNAME: babarkkhan.com).
 ## Conventions (do not break)
 
 - No em dashes in any copy. Use commas, periods, parentheses, or spaced hyphens.
+- **No font size below 12px, anywhere.** Numbered markers must be at least as large as the copy they label.
 - Zero build step, zero dependencies: hand-written HTML/CSS/JS only, Google Fonts is the sole external call.
 - Dark mode: `data-theme="dark"` on `<html>`, persisted in localStorage key `bkk-theme`, shared across both pages. Hero photo swaps via data-light/data-dark attributes.
 - The Perspective page file is `insights.html` (renamed from thesis.html on 8 Jul 2026). Keep the visible label "Perspective".
