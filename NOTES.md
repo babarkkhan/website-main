@@ -78,13 +78,53 @@ never `sameAs`.
   publishes academically as Babar Khalid Khan, PhD, is an investor, technology
   executive and entrepreneur."
 
+### Recognition section, reworked 5 Sep
+
+The first cut was an eight-card grid headed "Independent references". Babar
+found it awkward on a personal site, and he was right: it gave reference links
+the same visual weight as his actual roles, and repeated LinkedIn and X which
+already sit in the nav and the contact block.
+
+Now: a normal Recognition section that makes the claim as a heading ("Innovator
+Under 35") with one sentence and one link, followed by a thin `.research-row`
+holding ORCID, Google Scholar, ResearchGate and KAUST as plain inline links.
+LinkedIn and X are not repeated there. All seven identity URLs stay in
+`sameAs` regardless of what is visible, which is what Google reads.
+
+**The KAUST newsroom link was dead** and is removed from both the homepage and
+the About page Recognition paragraph. It was never in `sameAs`.
+
+### Conflicts with LinkedIn, 5 Sep, unresolved
+
+Babar sent his LinkedIn PDF export. The job title now matches ("Head of
+Technology Investments"), so that worry is closed. These do not match and
+**the site currently states the version Babar gave in chat, not LinkedIn's**:
+
+| Fact | Site says | LinkedIn says |
+|---|---|---|
+| MS institution | UMDNJ | Rutgers University |
+| MS field | Biology | Microbiology |
+| MS dates | 2010 | 2008 - 2011 |
+| BS field | Organismal and Environmental Biology | Molecular Biology |
+| ContraFect role | "led the preclinical therapeutic pipeline" | "Supported the therapeutic pipeline" |
+| Board roles | "4 Board Roles" (creds strip) | 3 board seats listed |
+| Genzyme Genetics | named on the About page | not listed at all |
+
+Also on LinkedIn but nowhere on the site: **QualSens**, which Babar co-founded
+2016-2021 to commercialize the desalination sensor from his PhD. That is the
+missing link between the KAUST research and the Innovators Under 35 award, and
+it makes him a two-time founder. Worth adding once he confirms.
+
+Do not "fix" any of these by picking a side. Babar decides which source is
+right, then both get updated together.
+
 ### Open, needs Babar
 
-- **The new title has to reach LinkedIn.** The site now says Head of Technology
-  Investments; third-party listings still show "Head, Life Sciences
-  Investments". Babar is validating the new title with NEOM and his manager.
-  Until LinkedIn matches, the site and the strongest external profile disagree,
-  which is the exact failure this whole pass exists to remove.
+- ~~The new title has to reach LinkedIn.~~ **Resolved 5 Sep.** LinkedIn already
+  reads "Head of Technology Investments" at NEOM Investment Fund. Site and
+  LinkedIn agree on the title. Only the older scraped listings lag, and those
+  will refresh on their own.
+- **Education conflicts, above.** The sharpest open item now.
 - **The KAUST CEMSE profile is misfiled**, sitting under the computer and
   mathematical sciences division rather than bioscience. Content is otherwise
   accurate. Worth asking KAUST to move it.

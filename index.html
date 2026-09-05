@@ -227,13 +227,18 @@
   .hero-bio a, .section-lede a { color: var(--navy); text-decoration: underline; text-decoration-color: var(--teal); text-underline-offset: 3px; transition: color 0.2s; }
   .hero-bio a:hover, .section-lede a:hover { color: var(--teal); }
 
-  /* RECOGNITION & PROFILES */
-  .ref-list { max-width: 1160px; margin: 28px auto 0; padding: 0 64px; list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .ref-item { background: var(--bg-alt); border: 1px solid var(--line); border-radius: 6px; padding: 20px 24px; transition: box-shadow 0.25s, border-color 0.25s; }
-  .ref-item:hover { border-color: var(--teal); box-shadow: 0 4px 20px rgba(11,29,58,0.07); }
-  .ref-link { display: block; font-size: 16px; font-weight: 600; color: var(--navy); text-decoration: none; line-height: 1.45; }
-  .ref-item:hover .ref-link { color: var(--teal); }
-  .ref-src { display: block; margin-top: 6px; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); font-weight: 500; }
+  /* RECOGNITION. A quiet utility row, not a card grid: these are references a
+     reader checks once, so they should not compete with the roles above them.
+     LinkedIn and X are deliberately absent, they already sit in the nav and in
+     the contact block. */
+  .research-row { max-width: 1160px; margin: 32px auto 0; padding: 20px 64px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px 20px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .research-label { font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--teal); font-weight: 600; }
+  .research-links { list-style: none; display: flex; flex-wrap: wrap; gap: 8px 10px; align-items: baseline; }
+  .research-links li { display: flex; align-items: baseline; gap: 10px; }
+  .research-links li + li::before { content: '·'; color: var(--ink-soft); }
+  .research-links a { font-size: 16px; color: var(--navy-mid); text-decoration: none; font-weight: 500; border-bottom: 1px solid transparent; transition: color 0.2s, border-color 0.2s; }
+  .research-links a:hover { color: var(--teal); border-bottom-color: var(--teal); }
+  .research-note { font-size: 13px; color: var(--ink-soft); font-weight: 400; margin-left: auto; }
 
   /* PERSPECTIVE TEASER */
   .persp-band { max-width: 1160px; margin: 80px auto 0; padding: 0 64px; }
@@ -284,8 +289,10 @@
     .hero-right { order: -1; height: 78vw; margin-top: 58px; }
     .hero-right::before { height: 110px; }
     .hero-left { padding: 36px 24px 56px; }
-    .section-label-row, .section-title, .section-lede, .pillar-grid, .lens-list, .roles-row, .persp-band, .ref-list { padding-left: 24px; padding-right: 24px; }
-    .ref-list { grid-template-columns: 1fr; }
+    .section-label-row, .section-title, .section-lede, .pillar-grid, .lens-list, .roles-row, .persp-band, .research-row { padding-left: 24px; padding-right: 24px; }
+    /* The "published as" note drops under the links rather than being pushed to
+       a right edge that no longer exists once the row wraps. */
+    .research-note { margin-left: 0; flex-basis: 100%; }
     .section-label-row { padding-top: 48px; padding-bottom: 24px; }
     .pillar-grid, .roles-row { grid-template-columns: 1fr; }
     .lens-item { grid-template-columns: 1fr; gap: 8px; }
@@ -439,46 +446,24 @@
   </div>
 </div>
 
-<!-- RECOGNITION & PROFILES -->
+<!-- RECOGNITION -->
 <div id="recognition">
-  <div class="section-label-row reveal"><p class="section-label">Recognition &amp; Profiles</p></div>
-  <div class="section-title reveal"><h2>Independent references</h2></div>
-  <div class="section-lede reveal"><p>A short, deliberate list of the sources that carry the record: the recognition itself, the university that awarded the doctorate, and the profiles Babar maintains.</p></div>
+  <div class="section-label-row reveal"><p class="section-label">Recognition</p></div>
+  <div class="section-title reveal"><h2>Innovator Under 35</h2></div>
+  <div class="section-lede reveal">
+    <p>Named by MIT Technology Review in 2019, on its list for the Middle East and North Africa, for a low-cost sensor that catches bacterial fouling in desalination systems before it takes hold. <a href="https://www.innovatorsunder35.com/the-list/babar-khan/" target="_blank" rel="noopener">Read the profile</a>.</p>
+  </div>
 
-  <ul class="ref-list reveal">
-    <li class="ref-item">
-      <a class="ref-link" href="https://www.innovatorsunder35.com/the-list/babar-khan/" target="_blank" rel="noopener">Innovators Under 35 profile</a>
-      <span class="ref-src">MIT Technology Review · MENA · 2019</span>
-    </li>
-    <li class="ref-item">
-      <a class="ref-link" href="https://www.kaust.edu.sa/en/news/kaust-alumnus-babar-khan-named-innovator-under-35" target="_blank" rel="noopener">KAUST alumnus Babar Khan named Innovator Under 35</a>
-      <span class="ref-src">King Abdullah University of Science and Technology</span>
-    </li>
-    <li class="ref-item">
-      <a class="ref-link" href="https://orcid.org/0000-0001-9887-3843" target="_blank" rel="noopener">0000-0001-9887-3843</a>
-      <span class="ref-src">ORCID</span>
-    </li>
-    <li class="ref-item">
-      <a class="ref-link" href="https://scholar.google.com/citations?user=11sTchEAAAAJ" target="_blank" rel="noopener">Publications as Babar Khalid Khan</a>
-      <span class="ref-src">Google Scholar</span>
-    </li>
-    <li class="ref-item">
-      <a class="ref-link" href="https://www.researchgate.net/profile/Babar-Khan-24" target="_blank" rel="noopener">Research profile</a>
-      <span class="ref-src">ResearchGate</span>
-    </li>
-    <li class="ref-item">
-      <a class="ref-link" href="https://cemse.kaust.edu.sa/profiles/babar-khan" target="_blank" rel="noopener">Doctoral profile</a>
-      <span class="ref-src">KAUST</span>
-    </li>
-    <li class="ref-item">
-      <a class="ref-link" href="https://www.linkedin.com/in/babark/" target="_blank" rel="noopener">Professional profile</a>
-      <span class="ref-src">LinkedIn</span>
-    </li>
-    <li class="ref-item">
-      <a class="ref-link" href="https://x.com/babarkkhan" target="_blank" rel="noopener">@babarkkhan</a>
-      <span class="ref-src">X</span>
-    </li>
-  </ul>
+  <div class="research-row reveal">
+    <span class="research-label">Research</span>
+    <ul class="research-links">
+      <li><a href="https://orcid.org/0000-0001-9887-3843" target="_blank" rel="noopener">ORCID</a></li>
+      <li><a href="https://scholar.google.com/citations?user=11sTchEAAAAJ" target="_blank" rel="noopener">Google Scholar</a></li>
+      <li><a href="https://www.researchgate.net/profile/Babar-Khan-24" target="_blank" rel="noopener">ResearchGate</a></li>
+      <li><a href="https://cemse.kaust.edu.sa/profiles/babar-khan" target="_blank" rel="noopener">KAUST</a></li>
+    </ul>
+    <span class="research-note">Published as Babar Khalid Khan</span>
+  </div>
 </div>
 
 <!-- PERSPECTIVE TEASER -->
