@@ -111,8 +111,20 @@ LinkedIn is the one that is wrong.**
 Nice corroboration: the MS diploma is made out to **Babar Khalid Khan**, which
 is exactly the `alternateName` the whole entity pass exists to reconcile.
 
-**Babar should fix LinkedIn**, not the site: institution on the MS, field on
-the BS.
+**Babar's LinkedIn decisions, 5 Sep.** He is keeping LinkedIn as it is on both
+points. Recorded here so nobody "fixes" it later:
+
+- **MS institution stays Rutgers on LinkedIn.** The UMDNJ entity there is a
+  dead page with no logo, since everything moved to Rutgers. This costs nothing:
+  the `alumniOf` node already carries "Rutgers Graduate School of Biomedical
+  Sciences" as `alternateName`, so LinkedIn saying Rutgers agrees with what the
+  site tells Google rather than contradicting it. No action.
+- **BS field stays Molecular Biology on LinkedIn**, to avoid being filtered out
+  of molecular biology searches. The site keeps the official Organismal and
+  Environmental Biology. Note the degree field is **not** in the schema at all,
+  it only appears as prose in the About page Education list, so there is no
+  contradictory structured signal. Flagged to Babar once as a credential claim
+  rather than a display preference; his call, and it stands.
 
 ### QualSens, added 5 Sep
 
