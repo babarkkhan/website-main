@@ -39,12 +39,10 @@ not carry a `founder` property (schema.org does not define one on Person).
 Anything not verifiable, or not visible on the page, stays out. Everything below
 was confirmed by Babar on 5 Sep before it went in.
 
-- **Education.** PhD Bioscience, KAUST, 2018. MS Biology, UMDNJ, **2010**, so
-  the degree was conferred by UMDNJ, three years before the 1 July 2013 merger
-  into Rutgers. `alumniOf` therefore names UMDNJ with `alternateName` "Rutgers
-  Biomedical and Health Sciences", not Rutgers outright. BS Organismal and
-  Environmental Biology, SUNY New Paltz. Naming the campus is kept deliberately:
-  a specific campus disambiguates better than a bare "SUNY".
+- **Education.** Superseded later the same day by the diplomas; see the LinkedIn
+  reconciliation table below for the values actually on the site. The one point
+  that still holds: naming the SUNY campus is deliberate, because a specific
+  campus disambiguates far better than a bare "SUNY".
 - **`sameAs`, seven entries**, all confirmed by Babar as his: LinkedIn, X,
   ORCID, Google Scholar, ResearchGate, the KAUST CEMSE profile, and the official
   Innovators Under 35 profile. ORCID is also carried as an `identifier`
