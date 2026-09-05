@@ -94,29 +94,59 @@ LinkedIn and X are not repeated there. All seven identity URLs stay in
 **The KAUST newsroom link was dead** and is removed from both the homepage and
 the About page Recognition paragraph. It was never in `sameAs`.
 
-### Conflicts with LinkedIn, 5 Sep, unresolved
+### LinkedIn reconciliation, settled 5 Sep
 
-Babar sent his LinkedIn PDF export. The job title now matches ("Head of
-Technology Investments"), so that worry is closed. These do not match and
-**the site currently states the version Babar gave in chat, not LinkedIn's**:
+Babar sent his LinkedIn PDF plus scans of both diplomas. The diplomas are the
+authority and they settle it. **Where LinkedIn and the diploma disagree,
+LinkedIn is the one that is wrong.**
 
-| Fact | Site says | LinkedIn says |
+| Fact | Now on the site | Source |
 |---|---|---|
-| MS institution | UMDNJ | Rutgers University |
-| MS field | Biology | Microbiology |
-| MS dates | 2010 | 2008 - 2011 |
-| BS field | Organismal and Environmental Biology | Molecular Biology |
-| ContraFect role | "led the preclinical therapeutic pipeline" | "Supported the therapeutic pipeline" |
-| Board roles | "4 Board Roles" (creds strip) | 3 board seats listed |
-| Genzyme Genetics | named on the About page | not listed at all |
+| MS institution | University of Medicine and Dentistry of New Jersey | Diploma. LinkedIn says "Rutgers University", which is wrong. |
+| MS school | Graduate School of Biomedical Sciences | Diploma |
+| MS field | Microbiology | Babar. The diploma does not name a field. |
+| MS conferred | 18 October 2011 | Diploma. The site says 2011; an earlier "2010" came from chat and was wrong. |
+| BS institution | State University of New York at New Paltz | Diploma reads "College at New Paltz", the 2008 form of the name. `alumniOf` uses the current official name, which is the entity Google resolves. |
+| BS field | Organismal and Environmental Biology | Babar. LinkedIn says "Molecular Biology", which is wrong. |
+| BS conferred | 20 May 2008 | Diploma |
 
-Also on LinkedIn but nowhere on the site: **QualSens**, which Babar co-founded
-2016-2021 to commercialize the desalination sensor from his PhD. That is the
-missing link between the KAUST research and the Innovators Under 35 award, and
-it makes him a two-time founder. Worth adding once he confirms.
+Nice corroboration: the MS diploma is made out to **Babar Khalid Khan**, which
+is exactly the `alternateName` the whole entity pass exists to reconcile.
 
-Do not "fix" any of these by picking a side. Babar decides which source is
-right, then both get updated together.
+**Babar should fix LinkedIn**, not the site: institution on the MS, field on
+the BS.
+
+### QualSens, added 5 Sep
+
+Co-founded February 2016 to February 2021, commercializing the fluorescence
+biofouling sensor from the KAUST PhD. It is the throughline the site was
+missing: doctoral research, then the award for that research, then a company
+built on it, and it makes Babar a two-time founder rather than a one-time one.
+
+Now on the About page as its own section, in the homepage Scientist lens, in
+the About lede, and as an Organization node with `founder` pointing at
+`#person`.
+
+**qualsens.com is deliberately not linked.** Babar let the registration lapse.
+A lapsed domain can be re-registered by anyone, and squatted domains routinely
+turn into spam or malware, so a link to one from the canonical entity page is a
+liability that only gets worse with time. The two live third-party sources
+carry the evidence instead: the KAUST Startup of the Week feature and the Arab
+News piece. If Babar ever re-registers the domain, add it then.
+
+### Still out of sync with LinkedIn
+
+- **ContraFect.** The site says he "led the preclinical therapeutic pipeline"
+  and was "first of three scientists to advance a novel antimicrobial into
+  Phase I"; LinkedIn says he "supported the therapeutic pipeline". LinkedIn
+  mentions neither Phase I nor the IPO. Babar has not ruled on this, so the
+  site keeps his own wording, unchanged, on both pages. Do not soften it
+  unilaterally, and if it does change it has to change on the homepage lens and
+  the About page together.
+- **"4 Board Roles"** on the credentials strip. LinkedIn lists three: BlueNalu,
+  Liberation Bioindustries, Paradromics. Unresolved.
+- **Genzyme Genetics** is named on the About page but absent from LinkedIn. The
+  timeline fits, so it looks trimmed rather than wrong.
 
 ### Open, needs Babar
 
