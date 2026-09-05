@@ -1,18 +1,15 @@
 # babarkkhan.com - Working Notes
 
-Last updated: 3 September 2026 (entity / Knowledge Panel pass, awaiting review)
+Last updated: 5 September 2026 (entity / Knowledge Panel pass, reviewed and merged)
 
-## PROPOSED, NOT YET DEPLOYED (entity + Knowledge Panel pass)
+## Done 5 Sep 2026 (entity + Knowledge Panel pass)
 
-Everything in this section sits on `claude/babarkkhan-knowledge-panel-nkrg9r`
-and is **not on `origin/main`**, so it is not live. Babar reviews the schema and
-metadata before it merges.
-
-**Deployment note, important:** `origin/main` is still at `bb6794d` (8 July).
-The whole 3 September run (accessibility, dark-only, type scale, credentials
-strip) is also only on this branch. The live site therefore still carries the
-light/dark toggle and the `html { visibility: hidden }` head script. Merging
-this branch ships both passes at once.
+Reviewed and approved by Babar, then merged to `main`. This merge also shipped
+the entire 3 September run (accessibility, dark-only, type scale, credentials
+strip), which had been sitting unmerged on a branch since then: `origin/main`
+was still at `bb6794d` from 8 July, despite an earlier note in this file
+claiming that work was live. It was not. Check `origin/main`, not a local
+branch, before believing this file about what is deployed.
 
 ### One entity, one @id
 
@@ -32,33 +29,58 @@ not carry a `founder` property (schema.org does not define one on Person).
 
 ### Only supportable claims go in schema
 
-Anything not verifiable from a source, or not visible on the page, is omitted
-rather than guessed. Currently omitted and waiting on Babar:
+Anything not verifiable, or not visible on the page, stays out. Everything below
+was confirmed by Babar on 5 Sep before it went in.
 
-- **MS and BS institutions.** Public sources report MS Biology at UMDNJ (merged
-  into Rutgers in 2013) and BS Organismal and Environmental Biology at SUNY
-  (campus unknown). Not on the page, not in `alumniOf`. There is a comment in
-  `about/index.html` at the Education section ready to fill in.
-- **ORCID, Crunchbase, ResearchGate, KAUST personal page.** Not in `sameAs`
-  until Babar confirms he maintains them and they are the right person.
+- **Education.** PhD Bioscience, KAUST, 2018. MS Biology, UMDNJ, **2010**, so
+  the degree was conferred by UMDNJ, three years before the 1 July 2013 merger
+  into Rutgers. `alumniOf` therefore names UMDNJ with `alternateName` "Rutgers
+  Biomedical and Health Sciences", not Rutgers outright. BS Organismal and
+  Environmental Biology, SUNY New Paltz. Naming the campus is kept deliberately:
+  a specific campus disambiguates better than a bare "SUNY".
+- **`sameAs`, seven entries**, all confirmed by Babar as his: LinkedIn, X,
+  ORCID, Google Scholar, ResearchGate, the KAUST CEMSE profile, and the official
+  Innovators Under 35 profile. ORCID is also carried as an `identifier`
+  PropertyValue.
+- **The Google Scholar ID was wrong in the first draft.** Search suggested
+  `Eqv1GVsAAAAJ`; Babar's is `11sTchEAAAAJ`. A worked example of why nothing
+  found by search goes into `sameAs` unverified.
+- **Not included:** Crunchbase (Babar does not maintain one), and the KAUST
+  personal page at `per.kaust.edu.sa`, which is dead.
 
-`sameAs` holds identity URLs only (LinkedIn, X, Google Scholar, the official
-Innovators Under 35 profile). Press coverage and speaker bios are visible links
-in the Recognition section, never `sameAs`.
+Press coverage and speaker bios are visible links in the Recognition section,
+never `sameAs`.
 
-### Copy changes that need Babar's eye
+### Copy decisions from Babar, 5 Sep
 
-- Homepage `<title>` is now **Babar Khan | Investor, AI Founder & Technology
+- Homepage `<title>` is **Babar Khan | Investor, AI Founder & Technology
   Executive**. This overrides the July docx decision to lead with the full legal
-  name; the full name lives in `alternateName` and in the About page bio.
-- H1 is **Babar Khan**, no "PhD". PhD survives in the eyebrow-adjacent bio line,
-  `honorificSuffix`, and `alternateName`.
-- Credentials strip: "MIT Innovators Under 35 (2019)" -> "MIT Tech Review
-  Innovator Under 35 (2019)". KAUST's own newsroom describes it as MIT
-  Technology Review Arabia's MENA list; the wording should not overclaim.
-- New sentence reconciling the names, on both `/` and `/about/`: "Babar Khan,
-  who publishes academically as Babar Khalid Khan, PhD, is an investor,
-  technology executive and entrepreneur."
+  name. The qualifier after the pipe is load-bearing: there is a Pakistani
+  television actor with the same name, and the role words are what separate the
+  two. Do not shorten the title to the bare name.
+- H1 is **Babar Khan**, no "PhD". PhD survives in `honorificSuffix`,
+  `alternateName`, the bio sentence and the About page.
+- **Title is now "Head of Technology Investments"**, not "Head of Life Science
+  Investments". Babar's call, a broader and better pitch. See the open item
+  below: this needs to land on LinkedIn too.
+- Credentials strip: "MIT Tech Review Innovator Under 35 (2019)". Confirmed to
+  be the **MENA edition**, so `award` reads "Innovators Under 35, MIT Technology
+  Review (MENA), 2019" and the About page says so in full. Do not widen this to
+  the global list.
+- Name reconciliation sentence on both `/` and `/about/`: "Babar Khan, who
+  publishes academically as Babar Khalid Khan, PhD, is an investor, technology
+  executive and entrepreneur."
+
+### Open, needs Babar
+
+- **The new title has to reach LinkedIn.** The site now says Head of Technology
+  Investments; third-party listings still show "Head, Life Sciences
+  Investments". Babar is validating the new title with NEOM and his manager.
+  Until LinkedIn matches, the site and the strongest external profile disagree,
+  which is the exact failure this whole pass exists to remove.
+- **The KAUST CEMSE profile is misfiled**, sitting under the computer and
+  mathematical sciences division rather than bioscience. Content is otherwise
+  accurate. Worth asking KAUST to move it.
 
 ### Architecture (deliberately three pages, not six)
 
@@ -79,6 +101,8 @@ for `og:image`; it is the same photograph, so identity stays consistent.
 
 Search Console verification under babar@khantet.com, sitemap submission, URL
 inspection, Rich Results test, and the Phase 9 cleanup of external profiles.
+Confirmed by Babar: babarkkhan.com resolves, www redirects to the apex. Still
+worth ticking "Enforce HTTPS" under repo Settings > Pages if it is not already.
 
 
 
