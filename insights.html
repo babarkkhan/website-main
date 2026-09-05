@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
 <title>Perspective · Babar Khan, PhD</title>
 <meta name="description" content="Where Babar Khan describes his focus at the intersection of deep tech and applied AI: biotech, AI infrastructure, the track record behind it, and how he thinks.">
 <link rel="canonical" href="https://babarkkhan.com/insights.html">
@@ -20,36 +21,64 @@
 <meta name="twitter:title" content="Perspective · Babar Khan, PhD">
 <meta name="twitter:description" content="Deep Tech × Applied AI. Where Babar Khan focuses, the track record behind it, and how he works with founders and co-investors.">
 <meta name="twitter:image" content="https://babarkkhan.com/og-image.jpg">
+<meta name="twitter:creator" content="@babarkkhan">
+<meta property="og:site_name" content="Babar Khan">
+<meta property="og:locale" content="en_US">
+<!-- No second Person node here. This page only points at the one defined on
+     the homepage, https://babarkkhan.com/#person. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://babarkkhan.com/insights.html#webpage",
+      "url": "https://babarkkhan.com/insights.html",
+      "name": "Perspective · Babar Khan, PhD",
+      "isPartOf": { "@id": "https://babarkkhan.com/#website" },
+      "about": { "@id": "https://babarkkhan.com/#person" },
+      "author": { "@id": "https://babarkkhan.com/#person" },
+      "breadcrumb": { "@id": "https://babarkkhan.com/insights.html#breadcrumb" },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://babarkkhan.com/insights.html#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://babarkkhan.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Perspective" }
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://babarkkhan.com/#person",
+      "name": "Babar Khan",
+      "url": "https://babarkkhan.com/"
+    }
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>html { visibility: hidden; }</style>
-<script>(function(){var t=localStorage.getItem('bkk-theme');if(t==='dark')document.documentElement.setAttribute('data-theme','dark');document.documentElement.style.visibility='visible';})();</script>
 <noscript><style>
-  html { visibility: visible !important; }
   .reveal { opacity: 1 !important; transform: none !important; }
   .thesis-eyebrow, .thesis-h1, .thesis-subtitle { opacity: 1 !important; animation: none !important; }
 </style></noscript>
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   :root {
-    --bg: #FFFFFF; --bg-alt: #F4F6FA; --navy: #0B1D3A; --navy-mid: #2E4A72;
-    --ink-soft: #6B7A99; --teal: #1B8C6E; --teal-light: rgba(27,140,110,0.1);
-    --teal-bright: #4DB896; --line: rgba(11,29,58,0.1); --line-teal: rgba(27,140,110,0.2);
-    --nav-bg: rgba(255,255,255,0.97);
-  }
-  [data-theme="dark"] {
     --bg: #0D1117; --bg-alt: #161B22; --navy: #E6EDF3; --navy-mid: #B0BAC6;
     --ink-soft: #8B949E; --teal: #3FB68B; --teal-light: rgba(63,182,139,0.12);
-    --teal-bright: #4DB896; --line: rgba(230,237,243,0.1); --line-teal: rgba(63,182,139,0.2);
+    --line: rgba(230,237,243,0.1); --line-teal: rgba(63,182,139,0.2);
     --nav-bg: rgba(13,17,23,0.97);
   }
   html { scroll-behavior: smooth; }
-  body { background: var(--bg); color: var(--navy); font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; transition: background 0.4s ease, color 0.4s ease; }
+  body { background: var(--bg); color: var(--navy); font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
   a:focus-visible, button:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; border-radius: 4px; }
 
   /* NAV */
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 16px 56px; background: var(--nav-bg); backdrop-filter: blur(12px); box-shadow: 0 1px 0 var(--line); transition: background 0.4s ease, box-shadow 0.4s ease; }
-  .nav-logo { font-family: 'Playfair Display', serif; font-weight: 400; font-size: 18px; color: var(--navy); text-decoration: none; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 16px 56px; background: var(--nav-bg); backdrop-filter: blur(12px); box-shadow: 0 1px 0 var(--line); }
+  .nav-logo { font-family: 'Playfair Display', serif; font-weight: 400; font-size: 18px; color: var(--navy); text-decoration: none; white-space: nowrap; }
   .nav-right { display: flex; gap: 8px; align-items: center; }
   .nav-back { font-size: 13px; letter-spacing: 0.06em; color: var(--ink-soft); text-decoration: none; font-weight: 500; transition: color 0.2s; margin-right: 16px; display: flex; align-items: center; gap: 6px; }
   .nav-back:hover { color: var(--teal); }
@@ -59,7 +88,7 @@
 
   /* HERO */
   .thesis-hero { padding: 148px 64px 80px; max-width: 1160px; margin: 0 auto; border-bottom: 1px solid var(--line); }
-  .thesis-eyebrow { font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--teal); margin-bottom: 24px; font-weight: 600; opacity: 0; animation: up 0.6s ease forwards 0.1s; }
+  .thesis-eyebrow { font-size: 14px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--teal); margin-bottom: 24px; font-weight: 600; opacity: 0; animation: up 0.6s ease forwards 0.1s; }
   .thesis-h1 { font-family: 'Playfair Display', serif; font-weight: 700; font-size: clamp(40px, 5vw, 68px); line-height: 1.05; letter-spacing: -0.01em; opacity: 0; animation: up 0.6s ease forwards 0.25s; color: var(--navy); }
   .thesis-h1 em { font-style: italic; color: var(--teal); font-weight: 400; }
   .thesis-subtitle { margin-top: 28px; font-size: 18px; color: var(--navy-mid); line-height: 1.85; font-weight: 300; max-width: 760px; opacity: 0; animation: up 0.6s ease forwards 0.4s; }
@@ -68,34 +97,35 @@
   .thesis-content { max-width: 1160px; margin: 0 auto; padding: 0 64px; }
   .thesis-section { padding: 72px 0; border-bottom: 1px solid var(--line); }
   .thesis-section:last-child { border-bottom: none; }
-  .ts-label { font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--teal); margin-bottom: 40px; display: flex; align-items: center; gap: 16px; font-weight: 600; }
+  .ts-label { font-size: 13px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--teal); margin-bottom: 40px; display: flex; align-items: center; gap: 16px; font-weight: 600; }
   .ts-label::after { content: ''; flex: 1; height: 1px; background: var(--line); }
 
   /* ── SECTION 1: WHERE I INVEST ── */
   .invest-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-  .invest-card { background: var(--bg-alt); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
-  .invest-card-header { background: var(--navy); padding: 32px 36px; }
-  .invest-card-num { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.4); font-weight: 600; margin-bottom: 10px; display: block; }
-  .invest-card-title { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; color: white; line-height: 1.2; margin-bottom: 10px; }
-  .invest-card-sub { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.6; font-weight: 300; }
+  .invest-card { background: #1A212B; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+  /* Header sits darker than the card body so it still reads as a solid block. */
+  .invest-card-header { background: var(--bg); border-bottom: 1px solid var(--line-teal); padding: 32px 36px; }
+  .invest-card-num { font-size: 18px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-soft); font-weight: 600; margin-bottom: 10px; display: block; }
+  .invest-card-title { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; color: var(--navy); line-height: 1.2; margin-bottom: 10px; }
+  .invest-card-sub { font-size: 15px; color: var(--ink-soft); line-height: 1.6; font-weight: 300; }
   .invest-card-body { padding: 0; }
-  .invest-item { padding: 28px 36px; border-bottom: 1px solid var(--line); transition: background 0.2s; }
+  .invest-item { padding: 28px 36px; border-bottom: 1px solid rgba(230,237,243,0.07); transition: background 0.2s; }
   .invest-item:last-child { border-bottom: none; }
-  .invest-item:hover { background: white; }
-  .invest-item-title { font-size: 14px; font-weight: 600; color: var(--teal); letter-spacing: 0.04em; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+  .invest-item:hover { background: #212a37; }
+  .invest-item-title { font-size: 15px; font-weight: 600; color: var(--teal); letter-spacing: 0.04em; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
   .invest-item-title::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--teal); flex-shrink: 0; }
-  .invest-item-body { font-size: 15px; color: var(--navy-mid); line-height: 1.8; font-weight: 300; }
+  .invest-item-body { font-size: 16px; color: var(--navy-mid); line-height: 1.8; font-weight: 300; }
 
   /* ── SECTION 2: TRACK RECORD ── */
-  .track-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 32px; }
-  .track-card { background: var(--bg-alt); border: 1px solid var(--line); border-radius: 8px; padding: 24px 20px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px; transition: box-shadow 0.25s, transform 0.25s; }
+  .track-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-bottom: 32px; }
+  .track-card { background: var(--bg-alt); border: 1px solid var(--line); border-radius: 8px; padding: 24px 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 14px; transition: box-shadow 0.25s, transform 0.25s; }
   .track-card:hover { box-shadow: 0 6px 24px rgba(11,29,58,0.08); transform: translateY(-2px); }
-  .track-logo { width: 48px; height: 48px; border-radius: 10px; object-fit: contain; background: white; border: 1px solid var(--line); padding: 4px; }
-  .track-logo-fallback { width: 48px; height: 48px; border-radius: 10px; background: var(--navy); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: white; flex-shrink: 0; }
-  .track-name { font-size: 13px; font-weight: 600; color: var(--navy); line-height: 1.3; }
-  .track-meta { font-size: 11px; color: var(--ink-soft); font-weight: 400; }
-  .track-role { font-size: 11px; font-weight: 600; color: var(--teal); letter-spacing: 0.04em; }
-  .track-footnote { font-size: 14px; color: var(--ink-soft); font-weight: 300; line-height: 1.7; padding: 20px 24px; background: var(--bg-alt); border: 1px solid var(--line); border-radius: 6px; }
+  .track-logo { width: 48px; height: 48px; border-radius: 10px; object-fit: contain; background: #FFFFFF; border: 1px solid var(--line); padding: 4px; }
+  .track-logo-fallback { width: 48px; height: 48px; border-radius: 10px; background: #FFFFFF; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: #0B1D3A; flex-shrink: 0; }
+  .track-name { font-size: 16px; overflow-wrap: break-word; font-weight: 600; color: var(--navy); line-height: 1.3; }
+  .track-meta { font-size: 13px; color: var(--ink-soft); font-weight: 400; }
+  .track-role { font-size: 13px; font-weight: 600; color: var(--teal); letter-spacing: 0.04em; }
+  .track-footnote { font-size: 15px; color: var(--ink-soft); font-weight: 300; line-height: 1.7; padding: 20px 24px; background: var(--bg-alt); border: 1px solid var(--line); border-radius: 6px; }
   .track-footnote strong { color: var(--navy-mid); font-weight: 500; }
 
   /* ── SECTION 3: HOW I WORK ── */
@@ -103,51 +133,25 @@
   .value-card { background: var(--bg-alt); border: 1px solid var(--line); border-radius: 8px; padding: 32px 32px; transition: box-shadow 0.25s; }
   .value-card:hover { box-shadow: 0 4px 20px rgba(11,29,58,0.07); }
   .value-card.span-full { grid-column: 1 / -1; }
-  .value-title { font-size: 14px; font-weight: 600; color: var(--teal); letter-spacing: 0.04em; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+  .value-title { font-size: 15px; font-weight: 600; color: var(--teal); letter-spacing: 0.04em; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
   .value-title::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--teal); flex-shrink: 0; }
-  .value-body { font-size: 15px; color: var(--navy-mid); line-height: 1.8; font-weight: 300; }
+  .value-body { font-size: 16px; color: var(--navy-mid); line-height: 1.8; font-weight: 300; }
 
   /* CTA */
-  .thesis-cta-section { background: var(--navy); margin-top: 80px; }
+  .thesis-cta-section { background: var(--bg-alt); border-top: 1px solid var(--line); margin-top: 80px; }
   .thesis-cta-inner { max-width: 1160px; margin: 0 auto; padding: 80px 64px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 36px; }
-  .thesis-cta-hed { font-family: 'Playfair Display', serif; font-size: clamp(28px, 3.5vw, 44px); font-weight: 400; color: white; line-height: 1.3; max-width: 640px; }
-  .thesis-cta-hed em { color: var(--teal-bright); font-style: italic; }
-  .thesis-cta-sub { font-size: 16px; color: rgba(255,255,255,0.55); line-height: 1.85; font-weight: 300; max-width: 560px; }
+  .thesis-cta-hed { font-family: 'Playfair Display', serif; font-size: clamp(28px, 3.5vw, 44px); font-weight: 400; color: var(--navy); line-height: 1.3; max-width: 640px; }
+  .thesis-cta-hed em { color: var(--teal); font-style: italic; }
+  .thesis-cta-sub { font-size: 17px; color: var(--ink-soft); line-height: 1.85; font-weight: 300; max-width: 560px; }
   .thesis-cta-icons { display: flex; gap: 12px; justify-content: center; }
-  .thesis-cta-link { width: 54px; height: 54px; border: 1px solid rgba(255,255,255,0.15); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.45); text-decoration: none; transition: all 0.25s; }
-  .thesis-cta-link:hover { border-color: var(--teal-bright); color: var(--teal-bright); background: rgba(77,184,150,0.12); }
+  .thesis-cta-link { width: 54px; height: 54px; border: 1px solid var(--line); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--ink-soft); text-decoration: none; transition: all 0.25s; }
+  .thesis-cta-link:hover { border-color: var(--teal); color: var(--teal); background: var(--teal-light); }
   .thesis-cta-link svg { width: 22px; height: 22px; }
 
-  footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.08); padding: 24px 56px; display: flex; justify-content: space-between; align-items: center; font-size: 14px; color: rgba(255,255,255,0.35); }
-  .footer-r { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 500; }
+  footer { background: var(--bg); border-top: 1px solid var(--line); padding: 24px 56px; display: flex; justify-content: space-between; align-items: center; font-size: 15px; color: var(--ink-soft); }
+  .footer-r { font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 500; }
 
-  /* THEME TOGGLE */
-  .theme-toggle { width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; border-radius: 10px; background: var(--bg-alt); border: 1px solid var(--line); cursor: pointer; color: var(--ink-soft); transition: all 0.3s; position: relative; }
-  .theme-toggle:hover { background: var(--teal-light); color: var(--teal); border-color: var(--teal); }
-  .theme-toggle svg { width: 18px; height: 18px; transition: transform 0.4s ease, opacity 0.3s ease; position: absolute; }
-  .theme-toggle .icon-sun { opacity: 0; transform: rotate(-90deg) scale(0.5); }
-  .theme-toggle .icon-moon { opacity: 1; transform: rotate(0) scale(1); }
-  [data-theme="dark"] .theme-toggle .icon-sun { opacity: 1; transform: rotate(0) scale(1); }
-  [data-theme="dark"] .theme-toggle .icon-moon { opacity: 0; transform: rotate(90deg) scale(0.5); }
 
-  /* DARK MODE OVERRIDES */
-  [data-theme="dark"] .invest-card-header { background: #161B22; border-bottom: 1px solid var(--line); }
-  [data-theme="dark"] .invest-card-title { color: var(--navy); }
-  [data-theme="dark"] .invest-card-num { color: var(--ink-soft); }
-  [data-theme="dark"] .invest-card-sub { color: var(--ink-soft); }
-  [data-theme="dark"] .invest-item:hover { background: var(--bg); }
-  [data-theme="dark"] .track-logo { background: var(--bg-alt); border-color: var(--line); }
-  [data-theme="dark"] .track-logo-fallback { background: #161B22; }
-  [data-theme="dark"] .thesis-cta-section { background: #161B22; border-top: 1px solid var(--line); }
-  [data-theme="dark"] .thesis-cta-hed { color: var(--navy); }
-  [data-theme="dark"] .thesis-cta-hed em { color: var(--teal); }
-  [data-theme="dark"] .thesis-cta-sub { color: var(--ink-soft); }
-  [data-theme="dark"] .thesis-cta-link { border-color: var(--line); color: var(--ink-soft); }
-  [data-theme="dark"] .thesis-cta-link:hover { border-color: var(--teal); color: var(--teal); background: var(--teal-light); }
-  [data-theme="dark"] footer { background: #0D1117; border-top: 1px solid var(--line); color: var(--ink-soft); }
-
-  /* Smooth transitions */
-  .invest-card, .invest-card-header, .invest-item, .track-card, .value-card, .thesis-cta-section, footer, nav { transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.3s ease; }
 
   @keyframes up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
   .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
@@ -164,12 +168,29 @@
     .thesis-hero, .thesis-content { padding-left: 24px; padding-right: 24px; }
     .thesis-hero { padding-top: 110px; padding-bottom: 56px; }
     .invest-grid, .value-grid { grid-template-columns: 1fr; }
-    .track-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .track-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
     .thesis-cta-inner { padding: 56px 24px; }
     footer { padding: 20px 24px; flex-direction: column; gap: 8px; text-align: center; }
   }
+  /* Match the homepage nav compaction on phones. */
+  @media (max-width: 600px) {
+    nav { padding: 12px 16px; }
+    .nav-logo { font-size: 16px; }
+    .nav-back { font-size: 12px; margin-right: 10px; }
+  }
+  /* The About link is the second nav item here, so the wordmark gives way on the
+     narrowest phones rather than the navigation. */
+  @media (max-width: 420px) {
+    nav { padding: 12px 12px; }
+    .nav-logo { display: none; }
+    .nav-back { margin-right: 8px; }
+    .nav-right { gap: 4px; }
+    .nav-icon { width: 34px; height: 34px; border-radius: 8px; }
+    .nav-icon svg { width: 17px; height: 17px; }
+  }
   @media (max-width: 480px) {
-    .track-grid { grid-template-columns: 1fr 1fr; }
+    .track-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .track-card { padding: 20px 12px; }
   }
 </style>
 </head>
@@ -179,16 +200,13 @@
   <a class="nav-logo" href="index.html">Babar Khan</a>
   <div class="nav-right">
     <a class="nav-back" href="index.html">← Home</a>
+    <a class="nav-back" href="about/">About</a>
     <a class="nav-icon" href="https://linkedin.com/in/babark" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn">
       <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
     </a>
     <a class="nav-icon" href="https://x.com/babarkkhan" target="_blank" rel="noopener" title="X" aria-label="X">
       <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
     </a>
-    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle dark mode">
-      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-    </button>
   </div>
 </nav>
 
@@ -203,27 +221,27 @@
 
   <!-- SECTION 1: WHERE I INVEST -->
   <div class="thesis-section reveal">
-    <p class="ts-label">Where I Invest</p>
+    <h2 class="ts-label">Where I Invest</h2>
     <div class="invest-grid">
 
       <!-- CARD 01: BIOTECH -->
       <div class="invest-card">
         <div class="invest-card-header">
           <span class="invest-card-num">1</span>
-          <h2 class="invest-card-title">Biotech</h2>
+          <h3 class="invest-card-title">Biotech</h3>
           <p class="invest-card-sub">Technology platforms that improve human health or build resilient production systems.</p>
         </div>
         <div class="invest-card-body">
           <div class="invest-item">
-            <div class="invest-item-title">Healthcare &amp; AI-enabled tools</div>
+            <h4 class="invest-item-title">Healthcare &amp; AI-enabled tools</h4>
             <p class="invest-item-body">Platforms that bring computation into clinical workflows: brain-computer interfaces moving from research to therapeutic devices, agentic AI automating healthcare operations. Technology that compresses the distance between data and clinical decision-making.</p>
           </div>
           <div class="invest-item">
-            <div class="invest-item-title">Biomanufacturing</div>
+            <h4 class="invest-item-title">Biomanufacturing</h4>
             <p class="invest-item-body">Cell-cultured proteins, precision fermentation, and bio-based materials will be the future of how we "grow" food and build the world around us. As more of Earth begins to look like Mars, and we move into Space, I've found the GCC a good analog for humanity's interplanetary future. It helps that the GCC is investing aggressively to localize bio supply chains. Companies that can license or localize production for Middle East and APAC markets have a second growth vector most US VCs overlook.</p>
           </div>
           <div class="invest-item">
-            <div class="invest-item-title">Platform therapeutics</div>
+            <h4 class="invest-item-title">Platform therapeutics</h4>
             <p class="invest-item-body">Novel modalities and AI-native drug discovery that compress timelines and reduce capital intensity. It's been a graveyard, but we're now coming out of the hole. My deep expertise in Antimicrobial Resistance (AMR) keeps me grounded from both biosafety and pandemic-readiness perspectives.</p>
           </div>
         </div>
@@ -233,20 +251,20 @@
       <div class="invest-card">
         <div class="invest-card-header">
           <span class="invest-card-num">2</span>
-          <h2 class="invest-card-title">AI Infrastructure</h2>
+          <h3 class="invest-card-title">AI Infrastructure</h3>
           <p class="invest-card-sub">The enabling layer that makes frontier AI work beyond English-speaking markets.</p>
         </div>
         <div class="invest-card-body">
           <div class="invest-item">
-            <div class="invest-item-title">Mid/Post-training data and RL environments</div>
+            <h4 class="invest-item-title">Mid/Post-training data and RL environments</h4>
             <p class="invest-item-body">The next bottleneck after energy and compute resolve will be the data crunch. As models scale, the quality, depth, diversity, and provenance of AI-ready training data becomes the binding constraint. I'm very interested in this generally, but also specifically in the bits-to-atoms world of biology and chemistry.</p>
           </div>
           <div class="invest-item">
-            <div class="invest-item-title">Multilingual / multimodal datasets</div>
+            <h4 class="invest-item-title">Multilingual / multimodal datasets</h4>
             <p class="invest-item-body">Frontier models are English and Chinese dominant, and we're just scratching the surface with text (and some images). The real human opportunity, and the economic one, is in making AI work for the rest of the world, in the modalities we naturally interact in as humans, like speech.</p>
           </div>
           <div class="invest-item">
-            <div class="invest-item-title">Safety and alignment</div>
+            <h4 class="invest-item-title">Safety and alignment</h4>
             <p class="invest-item-body">Aligning post-training and safety in AI will be a vast economic opportunity on the journey to make AI work for all, while ensuring bad actors are guarded against. You don't need to go far to see how important this is, so I won't harp on it more here.</p>
           </div>
         </div>
@@ -257,7 +275,7 @@
 
   <!-- SECTION 2: TRACK RECORD -->
   <div class="thesis-section reveal">
-    <p class="ts-label">Track Record (Selected)</p>
+    <h2 class="ts-label">Track Record (Selected)</h2>
     <div class="track-grid">
 
       <div class="track-card">
@@ -265,10 +283,9 @@
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="track-logo-fallback" style="display:none">S</div>
         <div>
-          <div class="track-name">Sonde Health</div>
-          <div class="track-meta">Digital Health · Series A</div>
+          <h3 class="track-name">Sonde Health</h3>
+          <div class="track-meta">Digital Health · Series&nbsp;A</div>
         </div>
-        <div class="track-role">My first deal, ran it end-to-end except sourcing</div>
       </div>
 
       <div class="track-card">
@@ -276,8 +293,8 @@
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="track-logo-fallback" style="display:none">B</div>
         <div>
-          <div class="track-name">BlueNalu</div>
-          <div class="track-meta">Cell-Cultured Seafood · Series B</div>
+          <h3 class="track-name">BlueNalu</h3>
+          <div class="track-meta">Cell-Cultured Seafood · Series&nbsp;B</div>
         </div>
         <div class="track-role">Board Member</div>
       </div>
@@ -287,8 +304,8 @@
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="track-logo-fallback" style="display:none">L</div>
         <div>
-          <div class="track-name">Liberation Bioindustries</div>
-          <div class="track-meta">Industrial Biotech · Series A</div>
+          <h3 class="track-name">Liberation Bioindustries</h3>
+          <div class="track-meta">Industrial Biotech · Series&nbsp;A</div>
         </div>
         <div class="track-role">Board Member</div>
       </div>
@@ -298,41 +315,30 @@
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="track-logo-fallback" style="display:none">P</div>
         <div>
-          <div class="track-name">Paradromics</div>
-          <div class="track-meta">Brain-Computer Interfaces · Series B</div>
+          <h3 class="track-name">Paradromics</h3>
+          <div class="track-meta">Brain-Computer Interfaces · Series&nbsp;B</div>
         </div>
         <div class="track-role">Board Observer</div>
       </div>
 
-      <div class="track-card">
-        <img class="track-logo" src="logos/animocabrands.com.png" alt="Animoca Brands"
-          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="track-logo-fallback" style="display:none">A</div>
-        <div>
-          <div class="track-name">Animoca Brands</div>
-          <div class="track-meta">Gaming / Web3 / RWA Tokenization · Series C</div>
-        </div>
-        <div class="track-role">Investor (in closing)</div>
-      </div>
-
     </div>
-    <p class="track-footnote"><strong>Earlier:</strong> Led preclinical therapeutic pipeline at ContraFect Corp (antimicrobial biotech), contributing to a $20M financing round and eventual IPO. Assess 50+ deep-tech opportunities a year.</p>
+    <p class="track-footnote"><strong>Earlier:</strong> Led preclinical therapeutic pipeline at ContraFect Corp (antimicrobial biotech), contributing to a $20M financing round and eventual IPO.</p>
   </div>
 
   <!-- SECTION 3: HOW I WORK -->
   <div class="thesis-section reveal">
-    <p class="ts-label">How I Work</p>
+    <h2 class="ts-label">How I Work</h2>
     <div class="value-grid">
       <div class="value-card">
-        <div class="value-title">GCC market access</div>
+        <h3 class="value-title">GCC market access</h3>
         <p class="value-body">12+ years building relationships with Saudi ministries, the Public Investment Fund (PIF), and the wider GCC ecosystem.</p>
       </div>
       <div class="value-card">
-        <div class="value-title">Regulatory &amp; scientific diligence</div>
+        <h3 class="value-title">Regulatory &amp; scientific diligence</h3>
         <p class="value-body">I conduct my own technical diligence, and underwrite tech + market risk, which is a big differentiator.</p>
       </div>
       <div class="value-card span-full">
-        <div class="value-title">Founder friendly + board governance</div>
+        <h3 class="value-title">Founder friendly + board governance</h3>
         <p class="value-body">I understand the discipline required to represent institutional capital, as I sit on multiple boards. For me, being an ally to founders is the most important thing. Being a founder myself and a scientist, I get how hard it is to move from concept to commercial. I help technical founders communicate with institutional capital and navigate the long road.</p>
       </div>
     </div>
@@ -369,20 +375,6 @@
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
   }, { threshold: 0.08 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-  // Theme toggle — shared localStorage key with index page
-  function applyTheme(theme) {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('bkk-theme', theme);
-  }
-  function toggleTheme() {
-    const current = document.documentElement.getAttribute('data-theme') || 'light';
-    applyTheme(current === 'dark' ? 'light' : 'dark');
-  }
-  (function() {
-    const saved = localStorage.getItem('bkk-theme') || 'light';
-    if (saved === 'dark') applyTheme('dark');
-  })();
 </script>
 </body>
 </html>
