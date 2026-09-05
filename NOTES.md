@@ -4,12 +4,19 @@ Last updated: 5 September 2026 (entity / Knowledge Panel pass, reviewed and merg
 
 ## Done 5 Sep 2026 (entity + Knowledge Panel pass)
 
-Reviewed and approved by Babar, then merged to `main`. This merge also shipped
-the entire 3 September run (accessibility, dark-only, type scale, credentials
-strip), which had been sitting unmerged on a branch since then: `origin/main`
-was still at `bb6794d` from 8 July, despite an earlier note in this file
-claiming that work was live. It was not. Check `origin/main`, not a local
-branch, before believing this file about what is deployed.
+Reviewed and approved by Babar, then merged to `main` and deployed.
+
+**A correction, and a trap to avoid next time.** During this session I reported
+that `origin/main` was still at `bb6794d` (8 July) and that the whole
+3 September run had never shipped. That was wrong. The session's container had
+a stale remote-tracking ref, stored by a shallow `fetch --depth 50` at startup,
+and I read `origin/main` from it without re-fetching. The real remote `main`
+was at `3d81dd0` the whole time, exactly where the 3 September notes said it
+was. The push confirmed it: `3d81dd0..2f00006`, a clean fast-forward with no
+history discarded.
+
+**Run `git fetch origin main` before believing any statement about what is
+deployed.** A remote-tracking ref in a fresh container is not evidence.
 
 ### One entity, one @id
 
